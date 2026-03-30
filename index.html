@@ -127,12 +127,13 @@
 
   /* ===== SECTIONS ===== */
   .section {
-    max-width: 960px;
-    margin: 0 auto;
     padding: 40px 24px 48px;
   }
-  .section:nth-child(even) { background: var(--section-bg); max-width: 100%; }
-  .section:nth-child(even) .section-content { max-width: 960px; margin: 0 auto; }
+  .section-alt { background: var(--section-bg); }
+  .section-content {
+    max-width: 960px;
+    margin: 0 auto;
+  }
   .section-title {
     font-size: 1.35rem;
     font-weight: 700;
@@ -340,6 +341,7 @@
 
 <!-- ===== SECTION 1: 학력 ===== -->
 <div class="section" id="education">
+  <div class="section-content">
   <h2 class="section-title">학력</h2>
   <div class="edu-item">
     <div class="period">2022.10 – 2025.03</div>
@@ -354,10 +356,11 @@
     <div class="period">2018.04 – 2022.04</div>
     <div class="school">오카야마대학 이학부 수학과, 학사</div>
   </div>
+  </div>
 </div>
 
 <!-- ===== SECTION 2: 기업 강의 및 컨설팅 ===== -->
-<div class="section" id="lectures" style="background:var(--section-bg);">
+<div class="section section-alt" id="lectures">
   <div class="section-content">
     <h2 class="section-title">기업 강의 및 컨설팅</h2>
 
@@ -418,6 +421,7 @@
 
 <!-- ===== SECTION 3: 컨설팅 프로젝트 ===== -->
 <div class="section" id="consulting-projects">
+  <div class="section-content">
   <h2 class="section-title">컨설팅 프로젝트</h2>
   <div class="cards">
     <div class="card">
@@ -441,10 +445,11 @@
       <div class="card-desc">FastCampus 교육 콘텐츠 생성기 데모 앱 개발 (Python, PyInstaller)</div>
     </div>
   </div>
+  </div>
 </div>
 
 <!-- ===== SECTION 4: 개발 프로젝트 ===== -->
-<div class="section" id="dev-projects" style="background:var(--section-bg);">
+<div class="section section-alt" id="dev-projects">
   <div class="section-content">
     <h2 class="section-title">개발 프로젝트</h2>
 
@@ -548,16 +553,18 @@
 
 <!-- ===== SECTION 5: 커뮤니티 운영 ===== -->
 <div class="section" id="community">
+  <div class="section-content">
   <h2 class="section-title">커뮤니티 운영</h2>
   <ul class="community-list">
     <li>준랩 | JoonLab 유튜브 채널 운영</li>
     <li>카카오톡 「준랩의 지식 공유방」 오픈채팅방 운영 (480+명)</li>
     <li>GPTers 「AI로 연구하기」 커뮤니티 리더</li>
   </ul>
+  </div>
 </div>
 
 <!-- ===== SECTION 6: 기술 역량 및 자격 ===== -->
-<div class="section" id="skills" style="background:var(--section-bg);">
+<div class="section section-alt" id="skills">
   <div class="section-content">
     <h2 class="section-title">기술 역량 및 자격</h2>
 
