@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>박준 | PARK JOON — Portfolio</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --accent: #A50034;
+    --accent-light: #c9375f;
+    --text: #1A1A1A;
+    --gray: #555555;
+    --bg: #ffffff;
+    --card-border: #e0e0e0;
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    --section-bg: #fafafa;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: var(--accent);
+    color: #fff;
+    padding: 48px 0 40px;
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .header-text h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header-text .contact {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #f0b0c0;
+  }
+  .header-text .contact a { color: #f0b0c0; text-decoration: none; }
+  .header-text .contact a:hover { text-decoration: underline; }
+  .header-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  /* ===== SUB-NAV ===== */
+  .subnav {
+    background: #fff;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .subnav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .subnav a {
+    display: block;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: var(--gray);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .subnav a:hover, .subnav a:focus {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ===== PROFILE SUMMARY ===== */
+  .profile-summary {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 32px;
+  }
+  .profile-summary p {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 780px;
+  }
+  .tags {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1.5px solid var(--accent);
+    border-radius: 20px;
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 48px;
+  }
+  .section:nth-child(even) { background: var(--section-bg); max-width: 100%; }
+  .section:nth-child(even) .section-content { max-width: 960px; margin: 0 auto; }
+  .section-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding-left: 14px;
+    border-left: 4px solid var(--accent);
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+
+  /* ===== EDUCATION ===== */
+  .edu-item { margin-bottom: 28px; }
+  .edu-item .period {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .edu-item .school {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .edu-item ul {
+    padding-left: 20px;
+    color: var(--gray);
+    font-size: 0.93rem;
+  }
+  .edu-item li { margin-bottom: 3px; }
+
+  /* ===== GROUP HEADER ===== */
+  .group-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 32px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .group-header:first-child { margin-top: 0; }
+
+  /* ===== LECTURE LIST ===== */
+  .lecture-list { list-style: none; padding: 0; }
+  .lecture-list li {
+    position: relative;
+    padding: 8px 0 8px 18px;
+    font-size: 0.93rem;
+    color: var(--text);
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .lecture-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .lecture-list li .year {
+    color: var(--gray);
+    font-size: 0.82rem;
+  }
+
+  /* ===== PROJECT CARDS ===== */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .card {
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ===== TECH TAGS ===== */
+  .tech-group { margin-bottom: 18px; }
+  .tech-label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tech-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ===== COMMUNITY ===== */
+  .community-list { list-style: none; padding: 0; }
+  .community-list li {
+    padding: 10px 0 10px 18px;
+    position: relative;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .community-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ===== QUALIFICATIONS ===== */
+  .qual-item { margin-bottom: 18px; }
+  .qual-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+  .qual-item p, .qual-item li {
+    font-size: 0.9rem;
+    color: var(--gray);
+  }
+  .qual-item ul { padding-left: 20px; }
+  .qual-item li { margin-bottom: 3px; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 0.85rem;
+    color: var(--gray);
+    border-top: 1px solid var(--card-border);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .header-inner {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+    .header-photo { width: 140px; height: 140px; }
+    .header-text h1 { font-size: 1.8rem; }
+    .tags { justify-content: center; }
+    .subnav-inner { gap: 0; }
+    .subnav a { padding: 10px 10px; font-size: 0.8rem; }
+    .section { padding: 28px 16px 36px; }
+  }
+
+  @media (min-width: 700px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .subnav { display: none; }
+    .header { padding: 24px 0; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-text">
+      <h1>박준 | PARK JOON</h1>
+      <div class="contact">010-5060-9188 &nbsp;|&nbsp; <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></div>
+    </div>
+    <img class="header-photo" src="profile.jpg" alt="박준 프로필 사진">
+  </div>
+</header>
+
+<!-- ===== SUB-NAV ===== -->
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#education">학력</a>
+    <a href="#lectures">강의 / 컨설팅</a>
+    <a href="#consulting-projects">컨설팅 프로젝트</a>
+    <a href="#dev-projects">개발 프로젝트</a>
+    <a href="#community">커뮤니티</a>
+    <a href="#skills">기술 / 자격</a>
+  </div>
+</nav>
+
+<!-- ===== PROFILE SUMMARY ===== -->
+<div class="profile-summary">
+  <p>교토대학 정보학연구과 석사 출신의 AI 교육·컨설팅 전문가. LLM, RAG, Prompt Engineering 분야 연구 경험을 바탕으로 LG, SK 등 대기업 경영진 대상 AI 교육 및 컨설팅 수행. 기획부터 개발까지 풀사이클 AI 프로젝트 리딩.</p>
+  <div class="tags">
+    <span class="tag">AI 교육 설계</span>
+    <span class="tag">LLM/RAG 시스템 개발</span>
+    <span class="tag">기업 AX/DX 컨설팅</span>
+    <span class="tag">AI Agent 개발</span>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 학력 ===== -->
+<div class="section" id="education">
+  <h2 class="section-title">학력</h2>
+  <div class="edu-item">
+    <div class="period">2022.10 – 2025.03</div>
+    <div class="school">교토대학 대학원 정보학연구과 지능정보학 전공, 석사 (Kashima Lab)</div>
+    <ul>
+      <li>석사 논문: Emulating RAG via Prompt Engineering for Enhanced Long Context Comprehension in LLMs</li>
+      <li>연구 주제: LLM, Long Context Comprehension, RAG, Prompt Engineering</li>
+      <li>Panasonic 공동 연구: Time Series Anomaly Detection</li>
+    </ul>
+  </div>
+  <div class="edu-item">
+    <div class="period">2018.04 – 2022.04</div>
+    <div class="school">오카야마대학 이학부 수학과, 학사</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 기업 강의 및 컨설팅 ===== -->
+<div class="section" id="lectures" style="background:var(--section-bg);">
+  <div class="section-content">
+    <h2 class="section-title">기업 강의 및 컨설팅</h2>
+
+    <div class="group-header">LG 그룹</div>
+    <ul class="lecture-list">
+      <li>LG AX Camp for Leaders CEO 강의 <span class="year">(2026)</span></li>
+      <li>LG AI Agent 개발 컨설팅 — LangGraph + Supabase + Gemini <span class="year">(2026)</span></li>
+      <li>LG 경영진 컨설팅·코칭 다수 <span class="year">(2025–2026)</span></li>
+      <li>AI 활용 스마트 보상(C&amp;B) 실무 마스터 과정 <span class="year">(강의, 2025)</span></li>
+      <li>구매 커뮤니티 생성형 AI 기초 <span class="year">(강의, 2025)</span></li>
+    </ul>
+
+    <div class="group-header">SK 그룹</div>
+    <ul class="lecture-list">
+      <li>SKT AI Frontier 1–8기 파트너 <span class="year">(강의·컨설팅, 2024–2025)</span></li>
+      <li>SKT Design Camp 1기 <span class="year">(강의, 2026)</span></li>
+      <li>SKT Polaris Studio AI Agent 강의 <span class="year">(2026)</span></li>
+      <li>SKT 에이닷비즈 &amp; RAG <span class="year">(강의·컨설팅, 2025–2026)</span></li>
+      <li>SK HR/HRD 데이터분석 &amp; 대시보드 <span class="year">(강의·컨설팅, 2025)</span></li>
+      <li>SK하이닉스 데이터분석 &amp; 대시보드 <span class="year">(강의·컨설팅, 2025)</span></li>
+      <li>SK하이닉스 n8n 자동화 <span class="year">(강의·컨설팅, 2025)</span></li>
+      <li>SK에코플랜트 AI Camp <span class="year">(강의, 2026)</span></li>
+      <li>SK Chem 컨설팅·코칭 <span class="year">(2025)</span></li>
+      <li>SK mysuni HRD 컨설팅·코칭 <span class="year">(2025)</span></li>
+      <li>SK 이천포럼 구성원 에이전트 프로젝트 <span class="year">(2025)</span></li>
+      <li>SK 일본 법인(JID) AI 활용 업무 강의 — 도쿄, 일본어 진행 <span class="year">(2025)</span></li>
+      <li>SKB 컨설팅·코칭 <span class="year">(2025)</span></li>
+    </ul>
+
+    <div class="group-header">기업 강연 및 기타</div>
+    <ul class="lecture-list">
+      <li>국립농업과학원 「AI로 연구의 한계를 넘다」 강연</li>
+      <li>E4NET 「AI로 연구의 한계를 넘다」 강연</li>
+      <li>아이유노 글로벌 — 바이브코딩 기초 <span class="year">(강의, 2026)</span></li>
+      <li>백석대 스타트업 교육 컨설팅 <span class="year">(2026)</span></li>
+      <li>여행가J — Claude Code 강의 <span class="year">(2026)</span></li>
+      <li>원광보건대학교 AI 활용 출강 <span class="year">(2025)</span></li>
+    </ul>
+
+    <div class="group-header">패스트캠퍼스</div>
+    <ul class="lecture-list">
+      <li>「16가지 툴로 배우는 생성 AI 마스터 패키지」 강의</li>
+      <li>「차원이 다른 연구 프로세스: 연구자를 위한 AI툴 활용법」 강의</li>
+      <li>「박준의 나만을 위한 AI 서비스 만들기」 강의</li>
+      <li>「AI와 함께하는 슬기로운 신앙 생활」 강의</li>
+    </ul>
+
+    <div class="group-header">커뮤니티 특강 및 컨퍼런스</div>
+    <ul class="lecture-list">
+      <li>GPTers AI 커뮤니티 특강 다수 (14기, 10기 등)</li>
+      <li>지피터스 19기 Claude SKILLS 강의</li>
+      <li>지피터스 20기 스터디 특강</li>
+      <li>CMDS AI PKM Conference 발표 <span class="year">(2025.10)</span></li>
+      <li>CMDS Tech-Savvy Series <span class="year">(2025.12)</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 컨설팅 프로젝트 ===== -->
+<div class="section" id="consulting-projects">
+  <h2 class="section-title">컨설팅 프로젝트</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-title">LG AI Agent 플랫폼 개발 (2026)</div>
+      <div class="card-desc">LG AI 리터러시 교육용 대화형 AI 웹앱 개발 (LangGraph + FastAPI + Supabase + Gemini API)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">이포넷(E4NET) TOPIK AI 문제 생성 시스템 (2025–2026)</div>
+      <div class="card-desc">Gemini API 활용 TOPIK 듣기 평가용 이미지 자동생성 플랫폼 개발</div>
+    </div>
+    <div class="card">
+      <div class="card-title">신세계서울병원 AI 컨설팅 (2025)</div>
+      <div class="card-desc">AI 기반 병원 운영 데이터 분석 및 재고관리 시스템 컨설팅</div>
+    </div>
+    <div class="card">
+      <div class="card-title">백석대 Pind 프로젝트 (2026)</div>
+      <div class="card-desc">YouTube 영상 기반 장소 자동 추출 서비스 기술 멘토링</div>
+    </div>
+    <div class="card">
+      <div class="card-title">데이원컴퍼니(FastCampus) 외주 개발 프로젝트 (2025)</div>
+      <div class="card-desc">FastCampus 교육 콘텐츠 생성기 데모 앱 개발 (Python, PyInstaller)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 개발 프로젝트 ===== -->
+<div class="section" id="dev-projects" style="background:var(--section-bg);">
+  <div class="section-content">
+    <h2 class="section-title">개발 프로젝트</h2>
+
+    <div class="group-header">AI Agent &amp; LLM 시스템</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">LG AI Agent</div>
+        <div class="card-desc">LangGraph 기반 14-state 대화형 AI (FastAPI + Supabase + Gemini)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">TOPIK AI 문제 생성 시스템</div>
+        <div class="card-desc">Gemini API 활용 이미지 자동생성</div>
+      </div>
+      <div class="card">
+        <div class="card-title">논문 분석 All-in-One 시스템</div>
+        <div class="card-desc">논문 요약, 마인드맵, 팟캐스트 자동 생성</div>
+      </div>
+      <div class="card">
+        <div class="card-title">개인화 음성 팟캐스트 자동화</div>
+        <div class="card-desc">Voice Cloning + 팟캐스트 생성 파이프라인</div>
+      </div>
+    </div>
+
+    <div class="group-header">자동화 &amp; 대시보드</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">마케팅 LMF 자동화 대시보드</div>
+        <div class="card-desc">마케팅 데이터 자동 수집 및 대시보드 시각화</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Apps Script 뉴스레터 자동화 시스템</div>
+        <div class="card-desc">Google Apps Script 기반 뉴스레터 자동 발송</div>
+      </div>
+      <div class="card">
+        <div class="card-title">교육 컨텐츠 영상 자동화 파이프라인</div>
+        <div class="card-desc">교육 영상 제작 자동화 워크플로우</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Claude Code with GitHub Actions</div>
+        <div class="card-desc">서버리스 Claude Code 스케줄링</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Claude Code macOS Scheduler</div>
+        <div class="card-desc">Swift/SwiftUI 네이티브 앱</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Claude Code 커스텀 생태계</div>
+        <div class="card-desc">170+ Skills, 자동화 Hooks, 세션관리 도구, PKM 시스템 구축</div>
+      </div>
+    </div>
+
+    <div class="group-header">웹 &amp; 모바일 애플리케이션</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">PDF Annotator</div>
+        <div class="card-desc">React + TypeScript + Vite</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Prompt Vault</div>
+        <div class="card-desc">프롬프트 관리 시스템</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Convex Todo</div>
+        <div class="card-desc">React 19 + Convex 실시간 앱</div>
+      </div>
+      <div class="card">
+        <div class="card-title">ShadowCue for Mac</div>
+        <div class="card-desc">화면녹화 시 보이지 않는 스텔스 텔레프롬프터 (Swift, GitHub Release)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Guide Docs Generator</div>
+        <div class="card-desc">MP4 영상 AI 분석 → 가이드 문서 자동생성 (Gemini, Streamlit)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">NanoBanana PRO</div>
+        <div class="card-desc">Obsidian 노트를 AI 인포그래픽으로 변환 플러그인 (TypeScript, Multi-AI)</div>
+      </div>
+    </div>
+
+    <div class="group-header">AI/ML 도구</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">Sora Watermark Removal Tool</div>
+        <div class="card-desc">YOLO 기반 워터마크 감지 + AI 인페인팅</div>
+      </div>
+      <div class="card">
+        <div class="card-title">NotebookLM Logo Remover</div>
+        <div class="card-desc">Template Matching 알고리즘</div>
+      </div>
+    </div>
+
+    <div class="group-header">교육 및 튜토리얼</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">교육 프로젝트 (9개)</div>
+        <div class="card-desc">Claude Squad, Cursor, Git Worktree, MCP, Agent System, Chrome Extension, Slidev, Manim 등</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 커뮤니티 운영 ===== -->
+<div class="section" id="community">
+  <h2 class="section-title">커뮤니티 운영</h2>
+  <ul class="community-list">
+    <li>준랩 | JoonLab 유튜브 채널 운영</li>
+    <li>카카오톡 「준랩의 지식 공유방」 오픈채팅방 운영 (480+명)</li>
+    <li>GPTers 「AI로 연구하기」 커뮤니티 리더</li>
+  </ul>
+</div>
+
+<!-- ===== SECTION 6: 기술 역량 및 자격 ===== -->
+<div class="section" id="skills" style="background:var(--section-bg);">
+  <div class="section-content">
+    <h2 class="section-title">기술 역량 및 자격</h2>
+
+    <div class="group-header">기술 스택</div>
+    <div class="tech-group">
+      <div class="tech-label">AI / LLM</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Claude</span>
+        <span class="tech-tag">GPT</span>
+        <span class="tech-tag">Gemini</span>
+        <span class="tech-tag">LangGraph</span>
+        <span class="tech-tag">LangChain</span>
+        <span class="tech-tag">RAG</span>
+        <span class="tech-tag">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <div class="tech-label">Backend</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">Supabase</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <div class="tech-label">Frontend</div>
+      <div class="tech-tags">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">Vite</span>
+        <span class="tech-tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <div class="tech-label">Mobile / Desktop</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Swift</span>
+        <span class="tech-tag">SwiftUI</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <div class="tech-label">Automation</div>
+      <div class="tech-tags">
+        <span class="tech-tag">n8n</span>
+        <span class="tech-tag">Make</span>
+        <span class="tech-tag">Apps Script</span>
+        <span class="tech-tag">GitHub Actions</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <div class="tech-label">DevTools</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Claude Code</span>
+        <span class="tech-tag">Git</span>
+        <span class="tech-tag">Playwright</span>
+        <span class="tech-tag">Docker</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <div class="tech-label">Infra</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Cloudflare</span>
+        <span class="tech-tag">Vercel</span>
+        <span class="tech-tag">Netlify</span>
+      </div>
+    </div>
+
+    <div class="group-header">어학</div>
+    <div class="qual-item">
+      <ul>
+        <li>영어 — TOEIC 950</li>
+        <li>일본어 — JLPT N1</li>
+      </ul>
+    </div>
+
+    <div class="group-header">장학금</div>
+    <div class="qual-item">
+      <ul>
+        <li>한일공동이공계학부 국비유학생 선발 (2017, 18기)</li>
+        <li>생활비지원 장학금 (매달 120만원, 4년간, 2018–2022)</li>
+        <li>학부 전액장학생 (2018–2022)</li>
+        <li>대학원 석사 과정 장학생 (2022–2025)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  박준 | PARK JOON &nbsp;&middot;&nbsp; <a href="mailto:wns9133@gmail.com" style="color:var(--accent);text-decoration:none;">wns9133@gmail.com</a> &nbsp;&middot;&nbsp; 2026
+</footer>
+
+</body>
+</html>
