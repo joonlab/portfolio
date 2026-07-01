@@ -323,6 +323,7 @@
     <a href="#lectures">강의 / 컨설팅</a>
     <a href="#consulting-projects">컨설팅 프로젝트</a>
     <a href="#dev-projects">개발 프로젝트</a>
+    <a href="#research">AI 에이전트·연구</a>
     <a href="#community">커뮤니티</a>
     <a href="#skills">기술 / 자격</a>
   </div>
@@ -330,12 +331,14 @@
 
 <!-- ===== PROFILE SUMMARY ===== -->
 <div class="profile-summary">
-  <p>교토대학 정보학연구과 석사 출신의 AI 교육·컨설팅 전문가. LLM, RAG, Prompt Engineering 분야 연구 경험을 바탕으로 LG, SK 등 대기업 경영진 대상 AI 교육 및 컨설팅 수행. 기획부터 개발까지 풀사이클 AI 프로젝트 리딩.</p>
+  <p>교토대학 정보학연구과 석사(LLM·RAG 연구) 출신의 AI 교육·컨설팅 전문가이자 에이전트 시스템 엔지니어. LG·SK 등 대기업 경영진·실무진 대상 AI 교육과 AX 컨설팅을 수행하는 동시에, 멀티에이전트 오케스트레이션·에이전트 하네스 엔지니어링·AI 업무 자동화 시스템을 프로덕션 규모로 직접 설계·구축합니다. 기획부터 개발·배포까지 풀사이클로 리딩하며, 프런티어 모델의 에이전트 행동을 데이터로 분석해 설계에 반영하는 '검증 중심(Verification-first)' 엔지니어링을 지향합니다.</p>
   <div class="tags">
-    <span class="tag">AI 교육 설계</span>
-    <span class="tag">LLM/RAG 시스템 개발</span>
+    <span class="tag">AI 교육·강의 설계</span>
+    <span class="tag">멀티에이전트 오케스트레이션</span>
+    <span class="tag">에이전트 하네스 엔지니어링</span>
     <span class="tag">기업 AX/DX 컨설팅</span>
-    <span class="tag">AI Agent 개발</span>
+    <span class="tag">LLM/RAG 시스템 개발</span>
+    <span class="tag">AI 업무 자동화</span>
   </div>
 </div>
 
@@ -366,7 +369,13 @@
 
     <div class="group-header">LG 그룹</div>
     <ul class="lecture-list">
-      <li>LG AX Camp for Leaders CEO 강의 <span class="year">(2026)</span></li>
+      <li>LG AX Camp for Leaders CEO 강의 — 3차수 운영 <span class="year">(2026)</span></li>
+      <li>LG U+ Consumer 인재육성팀 「AI 활용 실무」 교육 — 1·2차수, Antigravity·바이브코딩 <span class="year">(2026, NPS +81)</span></li>
+      <li>LG전자 임원 심화 교육 — Claude Code 실무 (평택) <span class="year">(2026)</span></li>
+      <li>LG인화원 신임팀장 AX 교육 — 95명 3개 분반 <span class="year">(2026)</span></li>
+      <li>LG인화원 AX 리더(팀장) 세미나 <span class="year">(2026)</span></li>
+      <li>LG인화원 신임연구위원·전문위원 AX 세션 — 66명 <span class="year">(2026)</span></li>
+      <li>LG인화원 안전환경(HSE) 리더 Deep Agent Builder 교육 <span class="year">(2026)</span></li>
       <li>LG AI Agent 개발 컨설팅 — LangGraph + Supabase + Gemini <span class="year">(2026)</span></li>
       <li>LG 경영진 컨설팅·코칭 다수 <span class="year">(2025–2026)</span></li>
       <li>AI 활용 스마트 보상(C&amp;B) 실무 마스터 과정 <span class="year">(강의, 2025)</span></li>
@@ -392,6 +401,7 @@
 
     <div class="group-header">기업 강연 및 기타</div>
     <ul class="lecture-list">
+      <li>서울 AI 허브 「AI Native CEO」 과정 메인 강사 — 에이전트·하네스 엔지니어링 <span class="year">(2026, 8주 과정)</span></li>
       <li>국립농업과학원 「AI로 연구의 한계를 넘다」 강연</li>
       <li>E4NET 「AI로 연구의 한계를 넘다」 강연</li>
       <li>아이유노 글로벌 — 바이브코딩 기초 <span class="year">(강의, 2026)</span></li>
@@ -456,6 +466,22 @@
     <div class="group-header">AI Agent &amp; LLM 시스템</div>
     <div class="cards">
       <div class="card">
+        <div class="card-title">준랩 AutoTrader — 멀티에이전트 자동매매</div>
+        <div class="card-desc">7~12명 LLM 전문가 토론(독립분석→상호반박→매니저 종합) → 결정론적 regime 게이트·하드 리스크 한도. Node.js, 증권 API 연동, paper/live 2모드 (기술 연구 프로젝트)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Hermes — 능동형 AI 비서</div>
+        <div class="card-desc">데일리 브리핑·SOP 위키·이메일 triage·월간 자가진화를 크론 자동화. 클라우드→로컬(PM2) 이전 + ChatGPT OAuth 정액 백엔드</div>
+      </div>
+      <div class="card">
+        <div class="card-title">TOPIK I 강의영상 완전 자동화</div>
+        <div class="card-desc">문제생성→해설→TTS→슬라이드 애니메이션→영상 합성→다국어(5개 언어) 무인 파이프라인. 15종 에이전트 팀 + Gemini 4차원 영상 QA</div>
+      </div>
+      <div class="card">
+        <div class="card-title">insane-search — WAF 우회 검색 스킬</div>
+        <div class="card-desc">4단계 에스컬레이션 하네스(WebFetch→curl_cffi→Playwright) + R1~R7 규칙으로 LLM 오판 방지</div>
+      </div>
+      <div class="card">
         <div class="card-title">LG AI Agent</div>
         <div class="card-desc">LangGraph 기반 14-state 대화형 AI (FastAPI + Supabase + Gemini)</div>
       </div>
@@ -475,6 +501,30 @@
 
     <div class="group-header">자동화 &amp; 대시보드</div>
     <div class="cards">
+      <div class="card">
+        <div class="card-title">TimeTree Calendar CLI</div>
+        <div class="card-desc">공식 API가 없는 TimeTree의 내부 API를 리버스엔지니어링해 만든 CLI 백엔드 — 일정 CRUD·댓글·동기화·ICS/CSV 내보내기 14개 서브커맨드</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Padlet Custom API</div>
+        <div class="card-desc">공식 + 내부 API 하이브리드 풀 CRUD 백엔드. 2단 ID resolver로 섹션·게시물·댓글·파일 업로드까지 자동화</div>
+      </div>
+      <div class="card">
+        <div class="card-title">토스증권 API 대시보드</div>
+        <div class="card-desc">Next.js BFF 3-모드(mock/공식/비공식 CLI) 추상화 + GCP 고정IP 프록시로 동적 IP 해결. 시세·잔고·주문 8페이지</div>
+      </div>
+      <div class="card">
+        <div class="card-title">AI&amp;Beyond 멤버십 데이터 API</div>
+        <div class="card-desc">REST + MCP 원격 서버. Bearer 인증·SHA-256 키 해싱·레이트리밋·감사로그 보안 하드닝 (Railway 배포)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">HSE 법규 모니터링 자동화</div>
+        <div class="card-desc">법제처·KOSHA·OSHA API 통합 — 입법예고 감지·신구법 비교·변경 감지 엔진</div>
+      </div>
+      <div class="card">
+        <div class="card-title">준랩 기업교육 관리 시스템</div>
+        <div class="card-desc">정산·인건비·CRM·문서 발행 백오피스. node:sqlite + AES-256-GCM PII 암호화 + PDF 자동생성</div>
+      </div>
       <div class="card">
         <div class="card-title">마케팅 LMF 자동화 대시보드</div>
         <div class="card-desc">마케팅 데이터 자동 수집 및 대시보드 시각화</div>
@@ -504,6 +554,10 @@
     <div class="group-header">웹 &amp; 모바일 애플리케이션</div>
     <div class="cards">
       <div class="card">
+        <div class="card-title">Barback — macOS 메뉴바 관리앱</div>
+        <div class="card-desc">노치에 가려진 메뉴바 아이콘을 팝업으로 꺼내는 Bartender 클론. Swift 6 + ScreenCaptureKit + macOS 저수준/비공개 API (오픈소스)</div>
+      </div>
+      <div class="card">
         <div class="card-title">PDF Annotator</div>
         <div class="card-desc">React + TypeScript + Vite</div>
       </div>
@@ -532,6 +586,10 @@
     <div class="group-header">AI/ML 도구</div>
     <div class="cards">
       <div class="card">
+        <div class="card-title">korean-law — 법령·판례 조회 &amp; 인용 검증</div>
+        <div class="card-desc">법제처 공공 API 기반 법령/판례 조회 + LLM 인용 환각검증 MCP(93개 도구). AI 교육의 환각검증 실습용</div>
+      </div>
+      <div class="card">
         <div class="card-title">Sora Watermark Removal Tool</div>
         <div class="card-desc">YOLO 기반 워터마크 감지 + AI 인페인팅</div>
       </div>
@@ -546,6 +604,39 @@
       <div class="card">
         <div class="card-title">교육 프로젝트 (9개)</div>
         <div class="card-desc">Claude Squad, Cursor, Git Worktree, MCP, Agent System, Chrome Extension, Slidev, Manim 등</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4.5: AI 에이전트 & 연구 ===== -->
+<div class="section" id="research">
+  <div class="section-content">
+    <h2 class="section-title">AI 에이전트 &amp; 하네스 엔지니어링 — 연구·방법론</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">멀티에이전트 오케스트레이션 실패 분석</div>
+        <div class="card-desc">멀티에이전트가 왜 무너지는가를 정량화 — 맥락 붕괴 41.8%·유령 위임 36.9%·검증 오류 21.3%. 단일 오케스트레이터·Blackboard·도메인 독립의 3원칙으로 현실적 L3 설계 도출</div>
+      </div>
+      <div class="card">
+        <div class="card-title">에이전트 하네스 엔지니어링</div>
+        <div class="card-desc">"프롬프트가 아니라 루프를 설계한다." 안쪽 루프(ReAct)와 바깥 루프(탐색·검증·기록)의 이중 구조로 장기 실행 에이전트를 설계하는 방법론</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Fable-5 Traces 분석 (공개 연구)</div>
+        <div class="card-desc">단명한 프런티어 모델의 실제 코딩 궤적 4,665행을 분석 → 검증 내장 루프의 86.7%가 10스텝 내 완료됨을 발견. 인터랙티브 뷰어·덱·인포그래픽으로 공개 (Vercel + GitHub)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">GraphRAG 신뢰형 QA</div>
+        <div class="card-desc">Neo4j + LangChain. 불안정한 단발 Cypher 생성을 의도분류·엔티티링킹·고정 템플릿으로 대체해 구문오류 0·일관 정답 달성</div>
+      </div>
+      <div class="card">
+        <div class="card-title">병렬 컨텍스트 압축 + Merge Verifier</div>
+        <div class="card-desc">긴 세션을 블록 단위로 분해 → 5필드 스키마로 압축 → verifier의 4검사(coverage·contradiction·evidence·replay)로 핸드오프 손실을 선검출</div>
+      </div>
+      <div class="card">
+        <div class="card-title">LLM + ML 앙상블 설계</div>
+        <div class="card-desc">Claude(Sonnet) + XGBoost의 piecewise 가중 평균, Batch API + prompt caching으로 정확도·비용을 최적화한 예측 시스템 설계</div>
       </div>
     </div>
   </div>
@@ -578,7 +669,12 @@
         <span class="tech-tag">LangGraph</span>
         <span class="tech-tag">LangChain</span>
         <span class="tech-tag">RAG</span>
+        <span class="tech-tag">GraphRAG</span>
         <span class="tech-tag">Prompt Engineering</span>
+        <span class="tech-tag">MCP</span>
+        <span class="tech-tag">Claude Agent SDK</span>
+        <span class="tech-tag">Multi-Agent Orchestration</span>
+        <span class="tech-tag">ElevenLabs</span>
       </div>
     </div>
     <div class="tech-group">
@@ -586,7 +682,11 @@
       <div class="tech-tags">
         <span class="tech-tag">Python</span>
         <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">Node.js</span>
         <span class="tech-tag">Supabase</span>
+        <span class="tech-tag">Prisma</span>
+        <span class="tech-tag">SQLite</span>
+        <span class="tech-tag">Neo4j</span>
       </div>
     </div>
     <div class="tech-group">
@@ -625,11 +725,16 @@
       </div>
     </div>
     <div class="tech-group">
-      <div class="tech-label">Infra</div>
+      <div class="tech-label">Infra / DevOps</div>
       <div class="tech-tags">
         <span class="tech-tag">Cloudflare</span>
         <span class="tech-tag">Vercel</span>
         <span class="tech-tag">Netlify</span>
+        <span class="tech-tag">Railway</span>
+        <span class="tech-tag">Fly.io</span>
+        <span class="tech-tag">GCP</span>
+        <span class="tech-tag">Tailscale</span>
+        <span class="tech-tag">pm2</span>
       </div>
     </div>
 
