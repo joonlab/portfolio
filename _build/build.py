@@ -143,9 +143,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .phone .scr div{border:1px solid var(--line);border-radius:8px;padding:7px 9px;margin-bottom:6px;line-height:1.45}
 .mock-dark .mock{margin-top:0}
 .case-mock{display:none}
-/* demo video */
-.case-media{position:relative;background:#f3f3f3;border-bottom:1px solid var(--line);order:-1}
-.case-media video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#f3f3f3}
+/* demo video — 목록 카드는 영상이 주인공: 좁은 폭에선 위, 넓은 폭에선 왼쪽 큰 칸 */
+.page-list .wrap{max-width:1240px}
+.case-media{position:relative;background:#f4f4f4;border-bottom:1px solid var(--line);order:-1}
+.case-media video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#f4f4f4}
+.case.has-media .case-wrap{display:flex;flex-direction:column}
+.case.has-media .case-body{flex:1}
+.case.has-media .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+.case.has-media:hover .case-media video{filter:saturate(1.05)}
+.case.has-media:hover h2{color:var(--accent)}
+.tag.src{background:#fff;border:1px solid var(--line);color:var(--muted);font-weight:600}.tag.src-real{border-color:#cfe6d6;color:#2f7a4b}
 .src-tag{position:absolute;left:12px;top:12px;font-size:.72rem;font-weight:700;line-height:1;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--sub);pointer-events:none}
 .demo{margin:30px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f3f3f3;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.08)}
 .demo video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;cursor:pointer;background:#f3f3f3}
@@ -154,9 +161,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .demo.paused .pp{opacity:1}
 @media (prefers-reduced-motion:reduce){.case,.demo .pp{transition:none}}
 @media (min-width:760px){
- .case.has-media{grid-template-columns:1fr 1.08fr}
- .case-media{order:0;border-bottom:0;border-left:1px solid var(--line);display:flex;align-items:center;padding:0}
- .case-media video{height:auto}
  .ps{grid-template-columns:1fr 1fr;gap:24px}
  .d-grid{grid-template-columns:180px 1fr}
  .feats{grid-template-columns:1fr 1fr}
@@ -165,7 +169,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
  .case-mock .mock{margin-top:0;font-size:.74rem}
  .case-mock .phone{width:150px}.case-mock .phone .scr{min-height:250px}
 }
+@media (min-width:980px){
+ .cases{gap:28px}
+ .case.has-media{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+ .case-media{order:-1;border-bottom:0;border-right:1px solid var(--line);display:flex;align-items:center}
+ .case.has-media .case-body{padding:28px 30px 22px}
+ .case.has-media .ps{grid-template-columns:1fr;gap:12px}
+ .case.has-media h2{font-size:1.4rem}
+ .case.has-media .metric{padding:14px 16px}
+ .case.has-media .metric b{font-size:1.35rem}
+}
 @media (max-width:640px){
+ .case.has-media .metric{padding:12px 12px}
+ .case.has-media .metric b{font-size:1.15rem}
+ .case.has-media .metric span{font-size:.74rem}
  .wrap{padding:0 16px}
  .hero h1,.d-hero h1{font-size:1.85rem}
  .case-body{padding:20px 18px}
@@ -178,7 +195,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 """
 
 
-def head(title, desc, depth):
+def head(title, desc, depth, body_cls=""):
     return f"""<!doctype html>
 <html lang="ko">
 <head>
@@ -191,7 +208,7 @@ def head(title, desc, depth):
 <link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{'../' * depth}assets/portfolio.css">
 </head>
-<body>
+<body{f' class="{body_cls}"' if body_cls else ''}>
 <header class="topbar"><div class="wrap">
 <a class="brand" href="{'../' * depth}">박준 <span>·</span> PARK JOON</a>
 <nav class="toplinks"><a href="{'../' * depth}">개요</a><a href="{'../' * (depth - 1) or './'}"{' aria-current="page"' if depth == 1 else ''}>프로젝트</a><a href="mailto:wns9133@gmail.com">연락</a></nav>
@@ -292,8 +309,10 @@ def build_index(projects, minor):
         tags = f'<span class="tag cat">{E(p["category"])}</span>' + "".join(f'<span class="tag">{E(t)}</span>' for t in p.get("tags", [])[:3])
         mets = "".join(metric_html(m) for m in p.get("metrics", [])[:3])
         mi = media_info(p["slug"])
+        if mi:
+            tags += f'<span class="tag src src-{E(mi["source"])}">{SRC_LABEL.get(mi["source"], "")}</span>'
         mk = "" if mi else mock_html(p.get("mock"), p["title"], max_phones=2)
-        side = (f'<div class="case-media">{video_html("../", p["slug"], "card", p["title"] + " 데모 영상")}<span class="src-tag">{SRC_LABEL.get(mi["source"], "")}</span></div>' if mi
+        side = (f'<div class="case-media">{video_html("../", p["slug"], "card", p["title"] + " 데모 영상")}</div>' if mi
                 else (f'<div class="case-mock" aria-hidden="true">{mk}</div>' if mk else ''))
         cards.append(f"""<a class="case{' has-media' if mi else (' has-mock' if mk else '')}" href="{E(p['slug'])}/" data-cat="{E(p['category'])}" aria-label="{E(p['title'])} — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
@@ -309,7 +328,7 @@ def build_index(projects, minor):
         f'<div><i>{E(m["category"])}</i><b>{E(m["title"])}</b><span>{E(m["one_liner"])}</span></div>' for m in minor
     )
     desc = "박준이 직접 설계·구현한 AI 에이전트·자동화·앱·음성·교육 프로젝트 케이스 모음"
-    out = head("프로젝트 — 박준 | PARK JOON", desc, 1) + f"""<main>
+    out = head("프로젝트 — 박준 | PARK JOON", desc, 1, "page-list") + f"""<main>
 <section class="hero"><div class="wrap">
 <div class="eyebrow">Case Studies</div>
 <h1>아이디어를 실제로 돌아가는<br>결과물로 만듭니다</h1>
@@ -408,7 +427,9 @@ def inject_featured(projects, n=6):
         vid = f'<div class="fc-media">{video_html("", p["slug"], "card", p["title"] + " 데모 영상")}</div>' if mi else ""
         cards.append(f'<a class="feat-card{" has-media" if mi else ""}" href="projects/{E(p["slug"])}/">{vid}<div class="fc-cat">{E(p["category"])}</div><div class="fc-title">{E(p["title"])}</div><div class="fc-desc">{E(p["subtitle"])}</div>{mh}</a>')
     style = ("<style>.feat-card.has-media{padding-top:0;overflow:hidden}.fc-media{margin:0 -20px 14px;border-bottom:1px solid var(--card-border);background:#f3f3f3}"
-             ".fc-media video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}</style>")
+             ".fc-media video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}"
+             ".feat-card.has-media:hover .fc-title{color:var(--accent)}"
+             "@media (min-width:700px){.feat-grid{grid-template-columns:1fr 1fr;gap:18px}}</style>")
     block = a + "\n" + style + '\n<div class="feat-grid">' + "".join(cards) + "</div>\n" + PLAYER_JS + b
     s = s[: s.index(a)] + block + s[s.index(b) + len(b):]
     idx.write_text(s, encoding="utf-8")

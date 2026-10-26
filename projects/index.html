@@ -10,7 +10,7 @@
 <link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/portfolio.css">
 </head>
-<body>
+<body class="page-list">
 <header class="topbar"><div class="wrap">
 <a class="brand" href="../">박준 <span>·</span> PARK JOON</a>
 <nav class="toplinks"><a href="../">개요</a><a href="./" aria-current="page">프로젝트</a><a href="mailto:wns9133@gmail.com">연락</a></nav>
@@ -24,276 +24,198 @@
 <div class="filters" role="group" aria-label="분야 필터"><button class="chip" aria-pressed="true" data-f="*">전체<em>24</em></button><button class="chip" aria-pressed="false" data-f="AI 에이전트·자동화">AI 에이전트·자동화<em>9</em></button><button class="chip" aria-pressed="false" data-f="음성·오디오">음성·오디오<em>2</em></button><button class="chip" aria-pressed="false" data-f="모바일·디바이스">모바일·디바이스<em>3</em></button><button class="chip" aria-pressed="false" data-f="웹앱·대시보드">웹앱·대시보드<em>4</em></button><button class="chip" aria-pressed="false" data-f="교육·콘텐츠 제작">교육·콘텐츠 제작<em>1</em></button><button class="chip" aria-pressed="false" data-f="영상·모션">영상·모션<em>2</em></button><button class="chip" aria-pressed="false" data-f="컨설팅·업무설계">컨설팅·업무설계<em>1</em></button><button class="chip" aria-pressed="false" data-f="연구·평가">연구·평가<em>2</em></button></div>
 </div></section>
 <section><div class="wrap"><div class="cases" id="cases">
-<a class="case has-mock" href="unattended-ai-relay/" data-cat="AI 에이전트·자동화" aria-label="사람 없이 이어 달리는 AI 작업 릴레이 — 자세히 보기">
+<a class="case has-media" href="unattended-ai-relay/" data-cat="AI 에이전트·자동화" aria-label="사람 없이 이어 달리는 AI 작업 릴레이 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">멀티 세션 오케스트레이션</span><span class="tag">컨텍스트 관리</span><span class="tag">무인 자동화</span><span class="meta-inline">2026.09–2026.10 · 배포·운영 중</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">멀티 세션 오케스트레이션</span><span class="tag">컨텍스트 관리</span><span class="tag">무인 자동화</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.09–2026.10 · 배포·운영 중</span></div>
 <h2>사람 없이 이어 달리는 AI 작업 릴레이</h2><p class="one">컨텍스트가 차면 스스로 다음 세션에 넘기고, 막히면 메일로 결정을 묻는 무인 작업 사슬</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>한 세션에 들어가지 않는 반복 작업은 사람이 세션을 갈아 끼우고 결정을 내려 줘야 해서, 자리를 비우면 그대로 멈췄습니다.</p></div><div><h3>SOLUTION</h3><p>작업 큐·워커 자가 인계·감시자 세션·결정 수신함·메일 알림을 묶어, 사람은 결정만 하고 나머지는 사슬이 이어 달리게 했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>7<small>회</small></b><span>첫 실전까지 세션 인계 성공(스모크 1 + 실전 6, 실패 0)</span></div><div class="metric"><b>6<small>건</small></b><span>첫 실전 2시간 동안 무인 완주한 작업 단위</span></div><div class="metric"><b>11<small>세션</small></b><span>외부 PoC 1건을 약 5시간에 완주한 사슬 길이</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>relay — 무인 작업 사슬</span></div><div class="mock-term"><span class="p">$</span> relay_init.sh ~/projects/sample
-<span class="c"># QUEUE.tsv: 한 줄 = 세션 하나가 맡을 단위</span>
-<span class="p">$</span> relay_watch.sh ~/projects/sample
-<span class="ok">✓ 감시자 기동 · 사슬 1개 감시 중</span>
-<span class="c"># 워커 컨텍스트 72% — 단위 경계에서 인계</span>
-<span class="ok">✓ 단위 3 done (verify rc=0) · 다음 세션에 프롬프트 경로 전달</span>
-<span class="c"># 단위 5: 사람 결정 필요 → hold, 결정 요청 메일 발송</span>
-<span class="ok">✓ 단위 6 진행 중 (막힌 단위만 건너뜀)</span>
-<span class="p">$</span> relay_decide.py answer 단위5 A안
-<span class="ok">✓ hold → todo · 사슬 재개</span></div></div></div>
-</a><a class="case has-mock" href="dualcue-live-interpreter/" data-cat="음성·오디오" aria-label="«DualCue» 화상 미팅 양방향 실시간 통역 자막 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/unattended-ai-relay/poster.webp" aria-label="사람 없이 이어 달리는 AI 작업 릴레이 데모 영상"><source src="../media/unattended-ai-relay/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="dualcue-live-interpreter/" data-cat="음성·오디오" aria-label="«DualCue» 화상 미팅 양방향 실시간 통역 자막 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">음성·오디오</span><span class="tag">실시간 번역</span><span class="tag">Gemini Live</span><span class="tag">Swift</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">음성·오디오</span><span class="tag">실시간 번역</span><span class="tag">Gemini Live</span><span class="tag">Swift</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
 <h2>«DualCue» 화상 미팅 양방향 실시간 통역 자막</h2><p class="one">내 말은 상대 화면에만 영어 자막으로, 상대 말은 내 화면에만 한국어 자막으로 — 상대는 아무것도 설치하지 않는 macOS 앱</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>외국어 화상 미팅에서 자막 도구는 대개 양쪽이 같은 도구를 깔아야 하고, 실시간 번역 자막은 문장이 반쪽에서 확정되거나 중복·누락이 생겼습니다.</p></div><div><h3>SOLUTION</h3><p>초벌 자막을 즉시 띄우고 확정 전 구간을 통째로 다시 번역해 덮어쓰며, «화자가 말을 끝냈는가»를 별도 모델로 판정해 확정 시점을 정했습니다. 품질은 22개 시나리오 회귀 평가로 쟀습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>48→8<small>%</small></b><span>반쪽 문장 확정 비율, 첫 버전→v2 (한국어→영어)</span></div><div class="metric"><b>58:8<small></small></b><span>블라인드 쌍비교 승패, 다듬은 자막 vs 초벌만 (p&lt;0.001)</span></div><div class="metric"><b>0.5~1<small>초</small></b><span>말한 뒤 초벌 자막 표시까지</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>DualCue eval</span></div><div class="mock-term"><span class="p">$</span> python3 eval/netmon.py &amp;
-<span class="c"># 네트워크 끊김 구간 기록</span>
-<span class="p">$</span> python3 eval/run.py v2 --runs 3 --conds draft,rule,judge
-<span class="c"># 시나리오 22개 × 3회 재생, 블라인드 판정</span>
-<span class="ok">✓ ko→en 다듬은 자막 vs 초벌 58:8 (p&lt;0.001)</span>
-<span class="ok">✓ en→ko 다듬은 자막 vs 초벌 48:18 (p&lt;0.001)</span>
-<span class="c"># 끊김과 겹친 결과는 자동 재실행</span>
-<span class="ok">✓ report.html 생성</span></div></div></div>
-</a><a class="case has-mock" href="exam-video-factory/" data-cat="영상·모션" aria-label="한국어 시험 강의·해설 영상 무인 생산 라인 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/dualcue-live-interpreter/poster.webp" aria-label="«DualCue» 화상 미팅 양방향 실시간 통역 자막 데모 영상"><source src="../media/dualcue-live-interpreter/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="exam-video-factory/" data-cat="영상·모션" aria-label="한국어 시험 강의·해설 영상 무인 생산 라인 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">영상·모션</span><span class="tag">멀티에이전트 하네스</span><span class="tag">TTS·STT 정렬</span><span class="tag">결정적 렌더링</span><span class="meta-inline">2026.06–2026.10 · 납품 완료</span></div>
+<div class="case-top"><span class="tag cat">영상·모션</span><span class="tag">멀티에이전트 하네스</span><span class="tag">TTS·STT 정렬</span><span class="tag">결정적 렌더링</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.06–2026.10 · 납품 완료</span></div>
 <h2>한국어 시험 강의·해설 영상 무인 생산 라인</h2><p class="one">문항 생성부터 음성·애니메이션 슬라이드·영상 합성까지, 사람 검수 단계를 측정 가능한 자동 게이트로 바꾼 다국어 영상 파이프라인</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>강의·해설 영상 제작이 문제 검토·대본 검토·슬라이드 수정·음성 확정 등 사람 검수 단계마다 멈추고, 언어가 늘수록 같은 작업이 반복되었습니다.</p></div><div><h3>SOLUTION</h3><p>5단계 파이프라인의 각 검수 단계를 자동 합격 기준과 재시도 상한을 가진 AI 검증 게이트로 바꾸고, 전사(STT) 타임코드를 화면 타이밍의 단일 기준으로 삼아 언어별 영상을 생산했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>43<small>편</small></b><span>중·고급 시험 해설 영상 납품(합계 341.5분)</span></div><div class="metric"><b>57×2<small>편</small></b><span>미얀마어·벵골어 화면번역 영상 본생산</span></div><div class="metric"><b>0<small>건</small></b><span>납품 게이트 FAIL(PASS 37 · REVIEW 6)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>강의 영상 파이프라인 실행</span></div><div class="mock-term"><span class="p">$</span> /build-video --set mock01 --lang bn --track screen-only
-<span class="c"># 음성·타이밍은 한국어판에서 빌리고 화면 글자만 교체합니다</span>
-<span class="ok">✓ S2 장면표 57건 · 스키마 검증 PASS</span>
-<span class="ok">✓ S3 타임코드 재사용 · 슬라이드 경계 57/57 정렬</span>
-<span class="ok">✓ S4 시각 QA · 잘림 0 · 겹침 0</span>
-<span class="ok">✓ S5 렌더 57편 · 1920×1080 · 24fps</span>
-<span class="ok">✓ 자막 2종 · 문장 수 일치 · 괄호 균형 · 문자 혼입 0</span>
-<span class="c"># 격리 큐: 0건</span></div></div></div>
-</a><a class="case has-mock" href="exam-content-pipeline/" data-cat="AI 에이전트·자동화" aria-label="한국어 시험 문항·음성 자동 생성·검수 파이프라인 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/exam-video-factory/poster.webp" aria-label="한국어 시험 강의·해설 영상 무인 생산 라인 데모 영상"><source src="../media/exam-video-factory/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="exam-content-pipeline/" data-cat="AI 에이전트·자동화" aria-label="한국어 시험 문항·음성 자동 생성·검수 파이프라인 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">문항 생성 하네스</span><span class="tag">검증 게이트</span><span class="tag">사람 검수 루프</span><span class="meta-inline">2025.11–2026.10 · 납품 완료</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">문항 생성 하네스</span><span class="tag">검증 게이트</span><span class="tag">사람 검수 루프</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2025.11–2026.10 · 납품 완료</span></div>
 <h2>한국어 시험 문항·음성 자동 생성·검수 파이프라인</h2><p class="one">쓰기·듣기·읽기 모의고사 문항 생성 하네스와 사람 검수용 TTS 스튜디오, 작업지시–실행–승인 작업판까지 갖춘 시험 콘텐츠 생산 체계</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>모의고사 문항·이미지·음원을 AI로 대량 생성해도, 결과를 받아 재구성하고 맞지 않으면 다시 만드는 일이 사람에게 남아 있었습니다.</p></div><div><h3>SOLUTION</h3><p>생성–검증–패키징을 하네스로 묶고, 자동 검증이 어려운 음성은 사람이 문장 단위로 확정하는 웹 도구로 분리했으며, 작업지시부터 승인까지를 한 화면에서 처리하는 작업판을 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>45<small>세트</small></b><span>쓰기 모의고사 시스템 업로드 형식 전달</span></div><div class="metric"><b>11<small>건</small></b><span>50문항 파일럿에서 찾은 검증 장치 결함</span></div><div class="metric"><b>3<small>개 언어</small></b><span>TTS 스튜디오 작업 공간(한·영·우즈베크)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>작업판 — 쓰기 세트 생성</span></div><div class="mock-dash"><div class="kpis"><div class="kpi"><small>진행 중 작업</small><b>1</b></div><div class="kpi"><small>검수 대기</small><b>3</b></div><div class="kpi"><small>승인</small><b>12</b></div><div class="kpi"><small>반려</small><b>2</b></div></div><div class="rows"><div><span>세트 5 · 51·52번 텍스트</span><span>검증 PASS · 승인 대기</span></div><div><span>세트 5 · 53번 도표 이미지</span><span>비전 대조 일치 · 승인 대기</span></div><div><span>세트 4 · 54번 논술</span><span>반려 — 분량 초과(사유 기록)</span></div><div><span>세트 4 · 54번 논술 재실행</span><span>프롬프트 수정 후 진행 중</span></div><div><span>세트 3 · PDF 빌드</span><span>완료 · 승인</span></div></div></div></div></div>
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/exam-content-pipeline/poster.webp" aria-label="한국어 시험 문항·음성 자동 생성·검수 파이프라인 데모 영상"><source src="../media/exam-content-pipeline/card.mp4" type="video/mp4"></video></div>
 </a><a class="case has-media" href="retail-daily-report-agent/" data-cat="AI 에이전트·자동화" aria-label="유통 일일 실적 보고 자동화 에이전트 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">업무 자동화</span><span class="tag">Human-in-the-loop</span><span class="tag">결정론 계산</span><span class="meta-inline">2026.08–2026.09 · 프로토타입</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">업무 자동화</span><span class="tag">Human-in-the-loop</span><span class="tag">결정론 계산</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.08–2026.09 · 프로토타입</span></div>
 <h2>유통 일일 실적 보고 자동화 에이전트</h2><p class="one">매일 아침 쿼리 결과를 넣으면 보고서와 집계표가 나오고, 발송·발주는 사람 결재 뒤에만 확정되는 유통업 운영 에이전트 진단과 PoC</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>국내 유통사의 일일 실적 보고가 매일 아침 쿼리 결과를 사람이 엑셀로 옮겨 붙이고 수식을 다시 입력하는 수작업에 묶여 있었습니다.</p></div><div><h3>SOLUTION</h3><p>보고서를 만들기 전에 데이터를 먼저 검사하고, 숫자는 결정론 스크립트가 계산하며, 발송·발주는 사람 결재 게이트를 거치는 구조로 견본과 시연 PoC를 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>8<small>항목</small></b><span>보고서 생성 전 자동 입고검사 검출</span></div><div class="metric"><b>60<small>개</small></b><span>산출물 인수 검증 계층 합계 등식</span></div><div class="metric"><b>99<small>항목</small></b><span>약속 원장 QA(충족 74 · 조건부 16)</span></div></div></div>
-<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/retail-daily-report-agent/poster.webp" aria-label="유통 일일 실적 보고 자동화 에이전트 데모 영상"><source src="../media/retail-daily-report-agent/card.mp4" type="video/mp4"></video><span class="src-tag">재구성 목업</span></div>
-</a><a class="case has-mock" href="lodging-ops-agent/" data-cat="AI 에이전트·자동화" aria-label="숙박 운영 로컬 AI 에이전트 «지휘탑» — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/retail-daily-report-agent/poster.webp" aria-label="유통 일일 실적 보고 자동화 에이전트 데모 영상"><source src="../media/retail-daily-report-agent/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="lodging-ops-agent/" data-cat="AI 에이전트·자동화" aria-label="숙박 운영 로컬 AI 에이전트 «지휘탑» — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">로컬 에이전트</span><span class="tag">확인 게이트</span><span class="tag">자연어 플래너</span><span class="meta-inline">2026.10 · 프로토타입</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">로컬 에이전트</span><span class="tag">확인 게이트</span><span class="tag">자연어 플래너</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 프로토타입</span></div>
 <h2>숙박 운영 로컬 AI 에이전트 «지휘탑»</h2><p class="one">한국어 한 줄 지시로 예약·정산·OTA 재고·게스트 응대·청소·가격 업무를 계획→확인→실행→검증→기록하는 로컬 에이전트</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>소규모 숙박 운영자는 예약·정산·채널 재고·손님 응대·청소·가격을 여러 화면을 오가며 혼자 처리해야 했고, AI에게 맡기기엔 잘못 보낸 문자나 잘못 막은 방을 되돌리기 어려웠습니다.</p></div><div><h3>SOLUTION</h3><p>지시를 액션 계획으로 바꾸되 위험도에 따라 확인을 받고, 외부 효과는 한 번만 일어나도록 보장하며, 실행 뒤 검증과 감사 기록을 남기는 로컬 실행기를 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>958<small>건</small></b><span>자동 시험 통과(실패 0)</span></div><div class="metric"><b>43<small>개</small></b><span>6개 업무 영역+시스템 액션</span></div><div class="metric"><b>7<small>종</small></b><span>실행 후 검증 절차</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>지휘탑 콘솔</span></div><div class="mock-chat"><div class="bubble u">오늘 체크아웃 청소 만들고 담당자 배정해서 문자 보내줘</div><div class="bubble a">계획 3단계입니다. ① 청소 작업 4건 생성(101·102·201·203호) ② 담당자 A·B 배정 ③ 담당자에게 안내 문자 2건 발송. ③은 외부 전송이라 아래 문장을 확인해 주세요.</div><div class="bubble a">[미리보기] «A님, 오늘 101·102호 퇴실 청소 부탁드립니다. 12시 이후 시작 가능합니다.»</div><div class="bubble u">확인</div><div class="bubble a">실행 완료. 청소 4건 생성, 배정 2건, 문자 2건 발송(중복 없음). 검증: 청소 일정 일관성 통과. 작업 기록에 남겼습니다.</div></div></div></div>
-</a><a class="case has-mock" href="voice-writing-harness/" data-cat="AI 에이전트·자동화" aria-label="블라인드 심판을 통과하는 &#x27;내 문체&#x27; 글쓰기 하네스 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/lodging-ops-agent/poster.webp" aria-label="숙박 운영 로컬 AI 에이전트 «지휘탑» 데모 영상"><source src="../media/lodging-ops-agent/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="voice-writing-harness/" data-cat="AI 에이전트·자동화" aria-label="블라인드 심판을 통과하는 &#x27;내 문체&#x27; 글쓰기 하네스 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">LLM-as-judge</span><span class="tag">문체 모델링</span><span class="tag">코퍼스 큐레이션</span><span class="meta-inline">2026.07–2026.09 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">LLM-as-judge</span><span class="tag">문체 모델링</span><span class="tag">코퍼스 큐레이션</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.07–2026.09 · 동작 확인</span></div>
 <h2>블라인드 심판을 통과하는 &#x27;내 문체&#x27; 글쓰기 하네스</h2><p class="one">본인이 직접 쓴 글로 문체를 측정하고, 판별 패널이 사람 글과 구별하지 못할 때까지 고쳐 쓰는 시스템</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>AI에게 내 문체로 써 달라고 하면 그 사람의 글이 아니라 무난하게 정돈된 글로 수렴하고, AI 흔적을 모델 스스로 감지하지 못했습니다.</p></div><div><h3>SOLUTION</h3><p>본인 육필 코퍼스, 결정론 린터·정량 지표 게이트, 블라인드 판별 패널, 팩트체크 게이트와 재작성 루프를 묶은 하네스를 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>5/5<small></small></b><span>순수 AI 글을 잡아낸 심판 캘리브레이션</span></div><div class="metric"><b>5/6<small>건</small></b><span>실전 케이스 중 판별 1/5 이하로 통과</span></div><div class="metric"><b>65<small>규칙</small></b><span>AI 표현 린터(상투어 56 + 구조 9)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>voice harness — 한 케이스 실행</span></div><div class="mock-term"><span class="p">$</span> joon-write --topic 행사 후기 --register sns
-<span class="c"># Round 1</span>
-<span class="ok">✓ G1 AI 표현 린터: 위반 0</span>
-<span class="ok">✓ G2 정량 지표: 20개 중 이탈 1 (허용)</span>
-<span class="c"># G3 판별 패널: 심판 3/5가 생성문 지목 → 탈락</span>
-<span class="c"># 지목 근거: 설계된 결론 문장, 수미상관</span>
-<span class="c"># Round 2 — 누적 피드백 반영해 재작성</span>
-<span class="ok">✓ G3 판별 패널: 1/5 통과</span>
-<span class="ok">✓ G4 팩트체크: 근거 없는 사실 0</span>
-<span class="ok">✓ final.md + report.md 저장</span></div></div></div>
-</a><a class="case has-mock" href="commerce-ops-agent/" data-cat="AI 에이전트·자동화" aria-label="공동구매 커머스 업무 자동화 에이전트 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/voice-writing-harness/poster.webp" aria-label="블라인드 심판을 통과하는 &#x27;내 문체&#x27; 글쓰기 하네스 데모 영상"><source src="../media/voice-writing-harness/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="commerce-ops-agent/" data-cat="AI 에이전트·자동화" aria-label="공동구매 커머스 업무 자동화 에이전트 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">브라우저 에이전트</span><span class="tag">격리 실행 환경</span><span class="tag">피드백 루프</span><span class="meta-inline">2026.09 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">브라우저 에이전트</span><span class="tag">격리 실행 환경</span><span class="tag">피드백 루프</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.09 · 동작 확인</span></div>
 <h2>공동구매 커머스 업무 자동화 에이전트</h2><p class="one">격리된 작업 VM 안의 코딩 에이전트가 인플루언서 발굴·인기 상품 조사·섭외 문구 준비를 자율로 수행하는 PoC</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>1인 공동구매 운영자가 비슷한 인플루언서 찾기, 반응 좋은 공구 상품 조사, 섭외 연락을 모두 손으로 하고 있었습니다.</p></div><div><h3>SOLUTION</h3><p>컨테이너 VM 안에서 코딩 에이전트가 SNS를 읽기 전용으로 조사하고, 웹 창구에서 지시·진행·결과·피드백을 주고받는 구조를 하루 만에 PoC로 검증했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>5분 22초<small></small></b><span>유사 인플루언서 15명 탐색 (화면 판정 ○12·△3)</span></div><div class="metric"><b>31/31<small></small></b><span>인기 공구 게시물 원본 대조 정확도</span></div><div class="metric"><b>31/36<small></small></b><span>조사 범위 안 재현율</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>커머스 에이전트 웹 창구 (샘플)</span></div><div class="mock-chat"><div class="bubble u">육아용품 공구를 하는 A계정과 비슷한 인플루언서 15명 찾아줘</div><div class="bubble a">해석: 시드 1개 · 팔로워 2만 이상 · 15명 · 공구 게시물 기준. 이대로 실행할까요?</div><div class="bubble u">실행</div><div class="bubble a">진행 중 · 프로필 34페이지 조회 · 쓰기 동작 0</div><div class="bubble a">완료 · 15명 표를 만들었습니다. 기준 충족 12명, 경계 3명</div><div class="bubble u">👎 계정 7은 살림용품 위주라 제외해줘</div><div class="bubble a">다음 실행 규칙에 반영했습니다. 같은 계정은 다시 제안하지 않습니다</div></div></div></div>
-</a><a class="case has-mock" href="accident-survey-ai/" data-cat="AI 에이전트·자동화" aria-label="교통사고 현장조사 AI — 과실 분류·약도 자동 생성 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/commerce-ops-agent/poster.webp" aria-label="공동구매 커머스 업무 자동화 에이전트 데모 영상"><source src="../media/commerce-ops-agent/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="accident-survey-ai/" data-cat="AI 에이전트·자동화" aria-label="교통사고 현장조사 AI — 과실 분류·약도 자동 생성 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">구조화 추출</span><span class="tag">JSON Schema</span><span class="tag">규칙 엔진</span><span class="meta-inline">2026.08 · 프로토타입</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">구조화 추출</span><span class="tag">JSON Schema</span><span class="tag">규칙 엔진</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.08 · 프로토타입</span></div>
 <h2>교통사고 현장조사 AI — 과실 분류·약도 자동 생성</h2><p class="one">사고 진술을 공개 과실 도표 코드로 분류하고, AI는 의미만·좌표는 규칙 엔진이 만드는 2단 구조 PoC</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>현장조사 업무 앱에 AI로 사고 내용 구조화와 사고약도 자동 생성을 붙이고 싶었지만, 라벨링 데이터가 없다는 전제 때문에 정확도를 측정할 방법이 없었습니다.</p></div><div><h3>SOLUTION</h3><p>공개 과실비율 도표 코드를 라벨 공간으로 삼아 자유 생성 문제를 분류·검색 문제로 재정의하고, LLM은 Scene JSON만 만들고 배치는 결정론적 solver가 맡는 구조를 실제로 돌려 검증했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>6/6<small>건</small></b><span>정답 도표 분류축 일치(최빈 결과 기준)</span></div><div class="metric"><b>26/28<small>회</small></b><span>동일 입력 반복 일치</span></div><div class="metric"><b>101<small>개</small></b><span>실측 확인한 차대차 과실 도표</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>scene → layout PoC</span></div><div class="mock-term"><span class="p">$</span> POC_RUNS=5 python3 extract.py
-<span class="c"># 케이스당 5회 · 스트리밍 수신 · 유휴 상한 60초</span>
-<span class="ok">✓ C1 교차로 좌회전  도표축 일치 5/5</span>
-<span class="ok">✓ C3 후방 추돌  road.type 3/5 → 확인 필요 표시</span>
-<span class="ok">✓ C6 정보부족  배치 거부 · 역질문 5건</span>
-<span class="p">$</span> python3 layout.py
-<span class="c"># LLM 호출 0회 — 결정론적 배치</span>
-<span class="ok">✓ 약도 5/5 배치 · 충돌지점 5/5 산출</span></div></div></div>
-</a><a class="case has-mock" href="foldable-mac-lab/" data-cat="모바일·디바이스" aria-label="폴더블 폰 × 맥 연동 랩 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/accident-survey-ai/poster.webp" aria-label="교통사고 현장조사 AI — 과실 분류·약도 자동 생성 데모 영상"><source src="../media/accident-survey-ai/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="foldable-mac-lab/" data-cat="모바일·디바이스" aria-label="폴더블 폰 × 맥 연동 랩 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">모바일·디바이스</span><span class="tag">Kotlin</span><span class="tag">Swift</span><span class="tag">무선 adb</span><span class="meta-inline">2026.09–2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">모바일·디바이스</span><span class="tag">Kotlin</span><span class="tag">Swift</span><span class="tag">무선 adb</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.09–2026.10 · 동작 확인</span></div>
 <h2>폴더블 폰 × 맥 연동 랩</h2><p class="one">무선만으로 안드로이드 폴더블과 맥을 하나로 묶은 미니 프로젝트 묶음 — 클립보드·마이크·화면·입력·음성 에이전트까지</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>아이폰에서 폴더블 안드로이드로 바꾸자 맥과 자연스럽게 되던 클립보드·파일·보조 화면·마이크 연동이 모두 사라졌습니다.</p></div><div><h3>SOLUTION</h3><p>케이블 없이 되는 경로를 직접 실측해 연결 인프라를 정하고, 필요한 연동을 하나씩 앱과 맥 서버로 만들어 공개 저장소로 정리했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>10<small>개</small></b><span>9일 동안 만든 미니 프로젝트</span></div><div class="metric"><b>11<small>개</small></b><span>공개 저장소 (허브 포함)</span></div><div class="metric"><b>35<small>분</small></b><span>첫 앱을 폰에 설치하기까지</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>fold lab</span></div><div class="mock-term"><span class="p">$</span> foldpoint start
-<span class="c"># 폰 입력 서버 기동 + 맥 메뉴바 앱 실행</span>
-<span class="ok">✓ BLE 연결 · 인증 통과</span>
-<span class="p">$</span> foldpoint go
-<span class="ok">✓ 맥 트랙패드 → 폰 포인터로 전환</span>
-<span class="p">$</span> foldmic on
-<span class="ok">✓ 폰 마이크를 맥 기본 입력으로 전환</span>
-<span class="p">$</span> foldmic status --json
-<span class="c"># 브리지가 끊기면 원래 입력으로 자동 복귀</span></div></div></div>
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/foldable-mac-lab/poster.webp" aria-label="폴더블 폰 × 맥 연동 랩 데모 영상"><source src="../media/foldable-mac-lab/card.mp4" type="video/mp4"></video></div>
 </a><a class="case has-media" href="seoul-live-map/" data-cat="웹앱·대시보드" aria-label="«서울 지금» 실시간 도시 상황 지도 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">실시간 데이터</span><span class="tag">공공 API</span><span class="tag">엣지 컴퓨팅</span><span class="meta-inline">2026.08 · 배포·운영 중</span></div>
+<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">실시간 데이터</span><span class="tag">공공 API</span><span class="tag">엣지 컴퓨팅</span><span class="tag src src-real">실제 화면</span><span class="meta-inline">2026.08 · 배포·운영 중</span></div>
 <h2>«서울 지금» 실시간 도시 상황 지도</h2><p class="one">명소 121곳 혼잡도와 교통·날씨·CCTV를 한 화면에 모으고 «지금 나가기 좋은가»를 근거와 함께 판정</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>혼잡도·교통·날씨·대기질이 서로 다른 화면과 API에 흩어져 있어 «지금 나가도 되는가»를 한 번에 판단하기 어려웠습니다.</p></div><div><h3>SOLUTION</h3><p>엣지 Worker가 공공 도시데이터를 중계·캐시하고 5분마다 시계열을 쌓으며, 클라이언트가 여러 축을 합쳐 등급·근거·확인하지 못한 축을 함께 보여주는 지도를 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>121<small>곳</small></b><span>실시간 혼잡도를 보여주는 명소</span></div><div class="metric"><b>1<small>콜</small></b><span>121곳 개요 조회(22KB, 공개 API 경로는 121콜)</span></div><div class="metric"><b>34,848<small>행/일</small></b><span>5분 단위 혼잡도 시계열 적재량</span></div></div></div>
-<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/seoul-live-map/poster.webp" aria-label="«서울 지금» 실시간 도시 상황 지도 데모 영상"><source src="../media/seoul-live-map/card.mp4" type="video/mp4"></video><span class="src-tag">실제 화면</span></div>
-</a><a class="case has-mock" href="homework-assign-app/" data-cat="웹앱·대시보드" aria-label="학원 미완료 과제 자동 배정 앱 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/seoul-live-map/poster.webp" aria-label="«서울 지금» 실시간 도시 상황 지도 데모 영상"><source src="../media/seoul-live-map/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="homework-assign-app/" data-cat="웹앱·대시보드" aria-label="학원 미완료 과제 자동 배정 앱 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">Cloudflare Workers</span><span class="tag">오프라인 동기화</span><span class="tag">반응형 레이아웃</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">Cloudflare Workers</span><span class="tag">오프라인 동기화</span><span class="tag">반응형 레이아웃</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
 <h2>학원 미완료 과제 자동 배정 앱</h2><p class="one">수업 뒤 남은 과제를 학생별 다음 일정에 자동 배정하고, 웹·안드로이드·서버가 같은 데이터를 쓰는 학원 운영 도구</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>학생마다 남은 유인물·과제·재시험을 직원이 손으로 일정에 옮기고, 당일 대상자와 경고 이력을 따로 챙겨야 했습니다.</p></div><div><h3>SOLUTION</h3><p>미완료 항목을 학생별 다음 일정에 자동 배정하고, 웹과 안드로이드 앱이 하나의 서버 데이터를 20초 안에 주고받게 만든 뒤 무료 등급 인프라에서 전체 범위를 검증했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>117/117<small>건</small></b><span>화면 9개 × 기기 10종 레이아웃 감사 통과</span></div><div class="metric"><b>19.5<small>초</small></b><span>웹→앱 최악 동기화 지연 (목표 20초)</span></div><div class="metric"><b>52/52<small>개</small></b><span>서버 단위 테스트 통과</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>당일 클리닉 현황</span></div><div class="mock-dash"><div class="kpis"><div class="kpi"><small>오늘 대상</small><b>12명</b></div><div class="kpi"><small>완료</small><b>7건</b></div><div class="kpi"><small>경고카드</small><b>2건</b></div><div class="kpi"><small>동기화 대기</small><b>0건</b></div></div><div class="rows"><div><span>14:00 A학생</span><span>시험지 2/3 통과</span></div><div><span>14:30 B학생</span><span>완료</span></div><div><span>15:00 C학생</span><span>노쇼 · 경고카드 생성</span></div><div><span>15:30 D학생</span><span>예정 · 이월 1회</span></div></div></div></div></div>
-</a><a class="case has-mock" href="agent-session-dashboard/" data-cat="웹앱·대시보드" aria-label="AI 코딩 세션 수십 개 관제·복구 대시보드 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/homework-assign-app/poster.webp" aria-label="학원 미완료 과제 자동 배정 앱 데모 영상"><source src="../media/homework-assign-app/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="agent-session-dashboard/" data-cat="웹앱·대시보드" aria-label="AI 코딩 세션 수십 개 관제·복구 대시보드 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">AI 에이전트 운영</span><span class="tag">세션 복구</span><span class="tag">FastAPI</span><span class="meta-inline">2026.07–2026.10 · 배포·운영 중</span></div>
+<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">AI 에이전트 운영</span><span class="tag">세션 복구</span><span class="tag">FastAPI</span><span class="tag src src-real">실제 화면</span><span class="meta-inline">2026.07–2026.10 · 배포·운영 중</span></div>
 <h2>AI 코딩 세션 수십 개 관제·복구 대시보드</h2><p class="one">동시에 도는 Claude Code 세션 중 나를 기다리는 것을 찾고, 강제 종료 뒤 고른 것만 부하 없이 되살리는 도구</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>터미널 앱의 전체 자동 복원이 탭 100개를 한꺼번에 띄워 컴퓨터를 반복해서 멈추게 했고, 수십 개 탭 중 승인을 기다리는 세션은 직접 찾지 않으면 알 수 없었습니다.</p></div><div><h3>SOLUTION</h3><p>레이아웃 상태를 주기적으로 스냅샷해 고른 창·그룹·탭만 순차 복원하고, 세션 상태를 판정해 막힌 세션을 웹·메뉴바에서 바로 보여 주는 관제 도구를 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>158/158<small>세션</small></b><span>배터리 방전 종료 뒤 단계 복원으로 되살린 Claude 세션(창 8/8)</span></div><div class="metric"><b>2.51→0.25<small>GB</small></b><span>보존 정책·압축 적용 후 스냅샷 저장 용량(21,284건→7,003건)</span></div><div class="metric"><b>12<small>개</small></b><span>한 번에 자동 실행하는 세션 상한(메모리 보호)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>세션 관제실</span></div><div class="mock-dash"><div class="kpis"><div class="kpi"><small>막힘</small><b>3</b></div><div class="kpi"><small>작업 중</small><b>8</b></div><div class="kpi"><small>뒤에서 진행</small><b>2</b></div><div class="kpi"><small>유휴</small><b>41</b></div></div><div class="rows"><div><span>창 1 · 그룹 A · API 리팩터링</span><span>승인 대기 — 이 탭으로</span></div><div><span>창 1 · 그룹 B · 문서 정리</span><span>질문 대기 — 이 탭으로</span></div><div><span>창 2 · 그룹 C · 데이터 수집</span><span>작업 중</span></div><div><span>창 3 · 그룹 A · 테스트 보강</span><span>뒤에서 진행</span></div><div><span>스냅샷 #1024 · 창 3 · 워크스페이스 18</span><span>선택 복원 4개 · 자동 실행 4/12</span></div></div></div></div></div>
-</a><a class="case has-mock" href="multiagent-trading/" data-cat="AI 에이전트·자동화" aria-label="멀티에이전트 토론 기반 자동매매 연구 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/agent-session-dashboard/poster.webp" aria-label="AI 코딩 세션 수십 개 관제·복구 대시보드 데모 영상"><source src="../media/agent-session-dashboard/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="multiagent-trading/" data-cat="AI 에이전트·자동화" aria-label="멀티에이전트 토론 기반 자동매매 연구 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">멀티에이전트 토론</span><span class="tag">결정론 안전 게이트</span><span class="tag">트레이딩 시스템</span><span class="meta-inline">2026.06–2026.09 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">멀티에이전트 토론</span><span class="tag">결정론 안전 게이트</span><span class="tag">트레이딩 시스템</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.06–2026.09 · 동작 확인</span></div>
 <h2>멀티에이전트 토론 기반 자동매매 연구</h2><p class="one">전문가 에이전트 토론, 결정론 게이트, 실집행 3중 조건을 갖춘 소액 자동매매 시스템과 그 종결 기록</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>LLM에게 매매 판단을 맡기되 실제 돈이 오가는 환경에서 잘못된 판단이 주문으로 새지 않게 하고, 효과를 측정할 수 있어야 했습니다.</p></div><div><h3>SOLUTION</h3><p>시장 스냅샷 수집, 전문가 에이전트 토론, 시장 체제 게이트, 한도 검증, 조건부 집행을 분리한 엔진과 대시보드를 만들어 소액 실계좌로 운용했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>138<small>사이클</small></b><span>초기 운용 기간 매매 판단 사이클</span></div><div class="metric"><b>348<small>건</small></b><span>기록된 판단(결정)</span></div><div class="metric"><b>410<small>개</small></b><span>엔진 테스트 (거부 피드백 레이어 배포 시점)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>투자팀 사이클 모니터 (샘플)</span></div><div class="mock-dash"><div class="kpis"><div class="kpi"><small>시장 체제</small><b>sideways</b></div><div class="kpi"><small>전문가 의견</small><b>12/12 수신</b></div><div class="kpi"><small>실집행 조건</small><b>2/3 → 가상 체결</b></div><div class="kpi"><small>이번 사이클 주문</small><b>0건</b></div></div><div class="rows"><div><span>종목 A</span><span>매수 제안 → 게이트에서 관망으로 하향</span></div><div><span>종목 B</span><span>매도 · 확신도 0.8</span></div><div><span>종목 C</span><span>관망 · 근거 부족</span></div><div><span>종목 D</span><span>매도 불가 잔량 → 사람 처리 표시</span></div></div></div></div></div>
-</a><a class="case has-mock" href="messenger-wiki/" data-cat="AI 에이전트·자동화" aria-label="단톡방을 비공개 위키로 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/multiagent-trading/poster.webp" aria-label="멀티에이전트 토론 기반 자동매매 연구 데모 영상"><source src="../media/multiagent-trading/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="messenger-wiki/" data-cat="AI 에이전트·자동화" aria-label="단톡방을 비공개 위키로 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">하이브리드 RAG</span><span class="tag">데이터 파이프라인</span><span class="tag">Next.js</span><span class="meta-inline">2026.06 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">하이브리드 RAG</span><span class="tag">데이터 파이프라인</span><span class="tag">Next.js</span><span class="tag src src-real">실제 화면</span><span class="meta-inline">2026.06 · 동작 확인</span></div>
 <h2>단톡방을 비공개 위키로</h2><p class="one">내 기기의 메신저 대화를 로컬에서만 처리해 방마다 일일 리포트·대화 흐름 그래프·하이브리드 RAG·AI 팟캐스트로</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>여러 단톡방에 쌓이는 대화는 검색과 회고가 어렵고, 지난 논의를 다시 찾으려면 스크롤을 거슬러 올라가야 했습니다.</p></div><div><h3>SOLUTION</h3><p>암호화된 로컬 메신저 DB를 복호화·마스킹하고, 방마다 일일 요약·발화 공존 그래프·어휘+의미 융합 검색 Q&amp;A를 제공하는 입장 코드 잠금 웹앱으로 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>14,300<small>건</small></b><span>초기 적재 메시지(최근 30일, 7개 방)</span></div><div class="metric"><b>46<small>개</small></b><span>단위 테스트(게이트 17 · 검색 29)</span></div><div class="metric"><b>4<small>계층</small></b><span>파이프라인 영역(복호화·콘텐츠·검색·웹)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>방 A — 질문하기</span></div><div class="mock-chat"><div class="bubble u">지난주에 배포 일정 얘기 나온 거 정리해줘</div><div class="bubble a">관련 대화 3건을 찾았습니다. 화요일에 배포를 목요일로 미루자는 의견이 나왔고, 목요일 리포트에서 테스트 완료 후 진행으로 정리됐습니다. (출처: 일일 리포트 2건, 원문 1건)</div><div class="bubble u">그때 가장 많이 이야기한 사람은?</div><div class="bubble a">해당 기간 관계 그래프 기준으로 참여자 B와 C의 대화 공존 가중치가 가장 높습니다.</div></div></div></div>
-</a><a class="case has-mock" href="local-tts-voice-clone/" data-cat="음성·오디오" aria-label="대형 오픈 TTS 로컬 서버화 + 내 목소리 복제 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/messenger-wiki/poster.webp" aria-label="단톡방을 비공개 위키로 데모 영상"><source src="../media/messenger-wiki/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="local-tts-voice-clone/" data-cat="음성·오디오" aria-label="대형 오픈 TTS 로컬 서버화 + 내 목소리 복제 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">음성·오디오</span><span class="tag">TTS</span><span class="tag">MLX</span><span class="tag">음성 복제</span><span class="meta-inline">2026.10 · 배포·운영 중</span></div>
+<div class="case-top"><span class="tag cat">음성·오디오</span><span class="tag">TTS</span><span class="tag">MLX</span><span class="tag">음성 복제</span><span class="tag src src-real">실제 화면</span><span class="meta-inline">2026.10 · 배포·운영 중</span></div>
 <h2>대형 오픈 TTS 로컬 서버화 + 내 목소리 복제</h2><p class="one">GPU 서버 전용으로 공개된 35B MoE 음성 합성 모델을 맥에서 4bit로 돌리고, 받아쓰기 검증으로 빠진 문장을 다시 만드는 개인 TTS 서버</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>공개된 대형 TTS 모델은 GPU 서버 전용이었고, 맥에서 돌려도 문단이 빠지거나 첫 문장 뒤 끝나 버리는 등 결과를 그대로 믿기 어려웠습니다.</p></div><div><h3>SOLUTION</h3><p>커뮤니티 4bit 변환본을 맥에서 서버화하고, 런타임 버그를 보강 패치로 막은 뒤 문장마다 받아쓰기로 대조해 오류가 큰 문장만 다시 생성하게 했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>약 2<small>배</small></b><span>실시간 대비 생성 속도 (검증 끔)</span></div><div class="metric"><b>약 32<small>GB</small></b><span>생성 중 최대 메모리</span></div><div class="metric"><b>0~0.07<small>CER</small></b><span>본인 목소리 최종 QA 오류율 (용도 7종)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>local tts</span></div><div class="mock-term"><span class="p">$</span> tts &quot;오늘 수업을 시작하겠습니다&quot; -v 내목소리 --verify
-<span class="c"># 첫 요청: 모델 로드 (4bit)</span>
-<span class="ok">✓ 문장 1/2 생성 · 받아쓰기 CER 0.00</span>
-<span class="ok">✓ 문장 2/2 생성 · 받아쓰기 CER 0.31 → 다시 생성</span>
-<span class="ok">✓ 문장 2/2 재생성 · CER 0.00</span>
-<span class="ok">✓ 저장 output.wav</span>
-<span class="p">$</span> tts voice-add 새목소리 녹음.m4a
-<span class="ok">✓ 후보 구간 중 오류율 최저 구간 선발</span></div></div></div>
-</a><a class="case has-mock" href="senior-travel-app/" data-cat="모바일·디바이스" aria-label="시니어 국내여행 예약 앱 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/local-tts-voice-clone/poster.webp" aria-label="대형 오픈 TTS 로컬 서버화 + 내 목소리 복제 데모 영상"><source src="../media/local-tts-voice-clone/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="senior-travel-app/" data-cat="모바일·디바이스" aria-label="시니어 국내여행 예약 앱 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">모바일·디바이스</span><span class="tag">시니어 UX</span><span class="tag">PWA</span><span class="tag">Android TWA</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">모바일·디바이스</span><span class="tag">시니어 UX</span><span class="tag">PWA</span><span class="tag">Android TWA</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
 <h2>시니어 국내여행 예약 앱</h2><p class="one">60~80대를 위한 여행 상품 예약·결제·환불·후기·관리자까지, 웹과 안드로이드 앱을 코드 하나로</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>시니어 대상 여행사를 준비하는 고객에게, 직관적이고 글자가 큰 예약 앱과 대표가 직접 운영할 수 있는 관리 화면이 필요했습니다.</p></div><div><h3>SOLUTION</h3><p>일반 여행 앱의 화면 구조를 기준으로 시니어용 글자 1.4~1.6배로 재설계하고, 서버리스 백엔드와 PWA·TWA 앱으로 예약부터 환불 계산까지 동작하는 시연판을 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>24/24<small>건</small></b><span>서버 테스트(환불 경계값·좌석·포인트 등)</span></div><div class="metric"><b>28/28<small>건</small></b><span>배포 주소 E2E(콘솔 오류 0)</span></div><div class="metric"><b>29/29<small>건</small></b><span>폴더블 실기기 E2E(커버 14 · 펼침 15)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock" style="background:#f3f3f3;border-color:var(--line)"><div class="phone-row"><div class="phone"><div class="scr"><b>홈</b><div>배너 1/3</div><div>카테고리 8개(4열)</div><div>인기 BEST 상품 3</div><div>하단 탭: 홈 · 여행 찾기 · 찜 · 내 예약 · 전화</div></div></div><div class="phone"><div class="scr"><b>예약하기</b><div>① 날짜 선택 (잔여 12석)</div><div>② 인원 2명 · 가족 대신 예약</div><div>③ 포인트 사용 · 환불 기준 동의</div><div>결제하기</div></div></div></div></div></div>
-</a><a class="case has-mock" href="qr-recipe-system/" data-cat="웹앱·대시보드" aria-label="QR로 여는 다국어 표준 레시피 시스템 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/senior-travel-app/poster.webp" aria-label="시니어 국내여행 예약 앱 데모 영상"><source src="../media/senior-travel-app/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="qr-recipe-system/" data-cat="웹앱·대시보드" aria-label="QR로 여는 다국어 표준 레시피 시스템 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">모바일 웹</span><span class="tag">QR</span><span class="tag">다국어</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">모바일 웹</span><span class="tag">QR</span><span class="tag">다국어</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
 <h2>QR로 여는 다국어 표준 레시피 시스템</h2><p class="one">한상 QR → 구성 음식 → 표준 레시피를 2개 언어로 보는 사업장용 웹앱 시연판</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>조리팀 직원들이 대표 메뉴를 일정한 품질로 조리하려면, 한상 구성·레시피·상차림 기준을 휴대전화로 바로 확인할 수단이 필요했습니다.</p></div><div><h3>SOLUTION</h3><p>메뉴북 QR 하나로 한상 → 음식 → 레시피·PDF까지 이어지고, 관리자가 레시피와 한상 구성을 직접 고쳐도 인쇄된 QR은 그대로인 웹앱 시연판을 요청 접수 당일 구현했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>29/29<small>건</small></b><span>서버 테스트 통과</span></div><div class="metric"><b>91/91<small>건</small></b><span>배포 주소 E2E 통과(콘솔 오류 0)</span></div><div class="metric"><b>14<small>개</small></b><span>자동 생성한 레시피 PDF(성조 깨짐 0)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock" style="background:#f3f3f3;border-color:var(--line)"><div class="phone-row"><div class="phone"><div class="scr"><b>한상 A-1</b><div>한상 사진</div><div>A등급 · 6품</div><div>밥 · 찌개 · 볶음 · 나물 · 전 · 과일</div><div>구성별 레시피 보기 →</div></div></div><div class="phone"><div class="scr"><b>상품 3 — 레시피</b><div>재료 | 조리 순서 | 담음새</div><div>기준 4인분 · 인분 계산</div><div>1. 재료 손질</div><div>2. 양념 버무리기</div><div>레시피 PDF 보기</div></div></div></div></div></div>
-</a><a class="case has-mock" href="motion-reel-engine/" data-cat="영상·모션" aria-label="코드로 만드는 모션그래픽 영상 엔진 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/qr-recipe-system/poster.webp" aria-label="QR로 여는 다국어 표준 레시피 시스템 데모 영상"><source src="../media/qr-recipe-system/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="motion-reel-engine/" data-cat="영상·모션" aria-label="코드로 만드는 모션그래픽 영상 엔진 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">영상·모션</span><span class="tag">모션그래픽</span><span class="tag">코드 기반 영상</span><span class="tag">자동 QA</span><span class="meta-inline">2026.09–2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">영상·모션</span><span class="tag">모션그래픽</span><span class="tag">코드 기반 영상</span><span class="tag">자동 QA</span><span class="tag src src-real">실제 화면</span><span class="meta-inline">2026.09–2026.10 · 동작 확인</span></div>
 <h2>코드로 만드는 모션그래픽 영상 엔진</h2><p class="one">HTML 타임라인을 프레임 단위로 렌더링하고, 레이아웃·영상·음량을 자동 검사하는 영상 제작 키트</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>AI에게 영상을 맡기면 렌더마다 결과가 달라지고, 글자 겹침·작은 글씨·음량 문제를 사람이 일일이 찾아야 했습니다.</p></div><div><h3>SOLUTION</h3><p>모든 화면 값을 시간 t의 함수로 고정한 HTML 엔진과, 결함이 있으면 출력 자체를 막는 레이아웃·영상·음량 게이트를 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>6<small>종</small></b><span>장면별로 섞어 쓰는 스타일 팩(손그림·아이소·다크·키네틱·인포그래픽·사진)</span></div><div class="metric"><b>12<small>종</small></b><span>엔진 내장 장면 전환</span></div><div class="metric"><b>102<small>건</small></b><span>실제 제작에서 쌓은 교훈 기록(LESSONS)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>motion-reel build</span></div><div class="mock-term"><span class="p">$</span> new_project.sh demo --title &quot;앱 소개&quot; --style kinetic --format 9:16
-<span class="ok">✓ 스타터 생성: index.html · score.py · build.sh</span>
-<span class="p">$</span> node tools/qa_layout.js demo/index.html --step 0.05
-<span class="ok">✓ 겹침 0 · 안전영역 0 · 작은 글씨 0 · 읽기속도 0</span>
-<span class="p">$</span> ./build.sh 1
-<span class="c"># 모션블러 16 렌더 → 이벤트 기반 사운드 → 합성</span>
-<span class="ok">✓ qa_video: 튐 0 · 급변 0 · 정지 구간 0</span>
-<span class="ok">✓ qa_audio: -16.0 LUFS · TP -3.5 dB</span>
-<span class="ok">✓ out/앱소개_30s_9x16.mp4</span></div></div></div>
-</a><a class="case has-mock" href="character-video-system/" data-cat="연구·평가" aria-label="캐릭터 일관성 유지 AI 영상 반복 제작 시스템 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/motion-reel-engine/poster.webp" aria-label="코드로 만드는 모션그래픽 영상 엔진 데모 영상"><source src="../media/motion-reel-engine/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="character-video-system/" data-cat="연구·평가" aria-label="캐릭터 일관성 유지 AI 영상 반복 제작 시스템 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">연구·평가</span><span class="tag">이미지→영상 생성</span><span class="tag">캐릭터 일관성</span><span class="tag">ComfyUI</span><span class="meta-inline">2026.08 · 프로토타입</span></div>
+<div class="case-top"><span class="tag cat">연구·평가</span><span class="tag">이미지→영상 생성</span><span class="tag">캐릭터 일관성</span><span class="tag">ComfyUI</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.08 · 프로토타입</span></div>
 <h2>캐릭터 일관성 유지 AI 영상 반복 제작 시스템</h2><p class="one">직접 만든 2D 캐릭터의 화풍을 지키며 짧은 영상을 반복 생성하는 오픈웨이트 파이프라인 PoC와 실측</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>자체 2D 캐릭터의 그림체를 유지하며 짧은 영상을 계속 만들어야 했는데, 생성 영상은 손가락·손과 사물이 닿는 부분이 무너졌습니다.</p></div><div><h3>SOLUTION</h3><p>오픈웨이트 영상 모델을 임대 GPU에서 직접 돌려 60여 개 실험 셀로 원인을 좁혔고, 입력 키프레임 축소 방식이 핵심 원인임을 찾아 생성 비용 변화 없이 개선했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>94~102<small>%</small></b><span>확정 처방(키프레임 사전 lanczos 축소+약한 언샤프) 적용 시 입력 대비 손 외곽선 복원율, 3개 컷 모두 재현(대조군 78~84%)</span></div><div class="metric"><b>123<small>초</small></b><span>RTX 5090 기준 720×1280·5초 컷 1편 생성 시간(초기 환경 warm, 이후 환경에서는 141~147초)</span></div><div class="metric"><b>90<small>초</small></b><span>OpenPose 제어 동작 이식 1편 생성 시간(애니메이트 모델 방식 225초)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>keyframe prefilter experiment</span></div><div class="mock-term"><span class="c"># 같은 컷 · 같은 프롬프트 · 시드 3개 · 720×1280</span>
-<span class="p">$</span> run_cell.py --cut c2 --arm base720 --seeds 3
-<span class="ok">✓ 0프레임 손가락 에지 2.93 ± 0.02 (기준)</span>
-<span class="p">$</span> run_cell.py --cut c2 --arm res896 --seeds 3
-<span class="ok">✓ 2.93 → 3.24 (+0.31)</span>
-<span class="p">$</span> run_cell.py --cut c2 --arm pre_lanczos_unsharp --seeds 3
-<span class="ok">✓ 2.93 → 9.21 (+6.28) · 생성 시간·VRAM 동일 · 과보정 → 파라미터 재조정</span>
-<span class="p">$</span> run_cell.py --cut c1,c2,c3 --arm unsharp_tuned
-<span class="ok">✓ 입력 대비 94~102% (대조군 78~84%) · 재현 3/3 → 규칙 확정</span></div></div></div>
-</a><a class="case has-mock" href="subway-seat-predictor/" data-cat="모바일·디바이스" aria-label="«앉을까» 지하철 착석 예측 앱 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/character-video-system/poster.webp" aria-label="캐릭터 일관성 유지 AI 영상 반복 제작 시스템 데모 영상"><source src="../media/character-video-system/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="subway-seat-predictor/" data-cat="모바일·디바이스" aria-label="«앉을까» 지하철 착석 예측 앱 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">모바일·디바이스</span><span class="tag">공공 데이터 API</span><span class="tag">통계 모델</span><span class="tag">Jetpack Compose</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">모바일·디바이스</span><span class="tag">공공 데이터 API</span><span class="tag">통계 모델</span><span class="tag">Jetpack Compose</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
 <h2>«앉을까» 지하철 착석 예측 앱</h2><p class="one">노선도·실시간 도착·혼잡도 통계를 한 화면에 모으고 «이 열차를 타면 몇 정거장 안에 앉을까»를 추정하는 폴더블 앱</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>출퇴근 지하철에서 «어느 열차를 타야 앉을 수 있나»는 도착 정보·혼잡도·승하차 통계가 흩어져 있어 판단하기 어려웠습니다.</p></div><div><h3>SOLUTION</h3><p>공공 실시간 도착·혼잡도·승하차 통계를 하나의 노선 그래프로 묶고, 정거장별 누적 착석 확률을 계산해 한 줄 판정으로 보여 줍니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>656<small>개</small></b><span>노선 그래프에 묶은 역 (노선 24개)</span></div><div class="metric"><b>58<small>%</small></b><span>도착 예정 초 필드가 0으로 오는 비율 — 메시지 파싱으로 보정</span></div><div class="metric"><b>950<small>회/일</small></b><span>실시간 호출 상한 (공식 한도 1,000회)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock" style="background:#f3f3f3;border-color:var(--line)"><div class="phone-row"><div class="phone"><div class="scr"><b>역 — A역</b><div>내선 · 2분 10초 후 (B역 방면)</div><div>외선 · 전역 출발</div><div>지금 혼잡도 142%</div><div>[ 앉을까? ]</div></div></div><div class="phone"><div class="scr"><b>앉을까 — A역 → F역</b><div>타자마자 앉을 확률 3%</div><div>C역 누적 18%</div><div>E역 누적 54% ← 여기서 앉을 듯</div><div>판정: 가능 · 통계 기반 추정</div></div></div></div></div></div>
-</a><a class="case has-mock" href="coding-tutor-curriculum/" data-cat="교육·콘텐츠 제작" aria-label="비개발자 대표를 위한 AI 코딩 과외 커리큘럼·교재 사이트 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/subway-seat-predictor/poster.webp" aria-label="«앉을까» 지하철 착석 예측 앱 데모 영상"><source src="../media/subway-seat-predictor/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="coding-tutor-curriculum/" data-cat="교육·콘텐츠 제작" aria-label="비개발자 대표를 위한 AI 코딩 과외 커리큘럼·교재 사이트 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">교육·콘텐츠 제작</span><span class="tag">교육 설계</span><span class="tag">Claude Code</span><span class="tag">정적 사이트</span><span class="meta-inline">2026.09 · 배포·운영 중</span></div>
+<div class="case-top"><span class="tag cat">교육·콘텐츠 제작</span><span class="tag">교육 설계</span><span class="tag">Claude Code</span><span class="tag">정적 사이트</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.09 · 배포·운영 중</span></div>
 <h2>비개발자 대표를 위한 AI 코딩 과외 커리큘럼·교재 사이트</h2><p class="one">Claude Code 한 도구를 축으로 한 1:1 과외의 5단계 커리큘럼 페이지와, 강사용·배포용 교재를 한 쌍씩 만든 교재 사이트</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>개발 경험이 없는 1인 기업 대표가 터미널부터 업무 자동화까지 AI 코딩 도구를 혼자 쓸 수 있게 되는 학습 경로가 필요했습니다.</p></div><div><h3>SOLUTION</h3><p>«무엇을 할 수 있게 되는가»로 쓴 5단계 37항목 커리큘럼을 설계하고, 항목마다 강사용 진행안과 수강생 배포용 교재를 한 쌍씩 만들어 빌드 스크립트로 교재 사이트를 생성·배포했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>37<small>항목</small></b><span>본 과정 5단계 학습 항목</span></div><div class="metric"><b>83<small>개</small></b><span>교재 문서 (강사용 + 배포용)</span></div><div class="metric"><b>30<small>장</small></b><span>교재 그림 (SVG 25 + 생성 표지 5)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock" style="background:#f3f3f3;border-color:var(--line)"><div class="phone-row"><div class="phone"><div class="scr"><b>2단계 — 내 파일로 시켜본다</b><div>01 폴더가 내 규칙대로 정리되어 나옵니다</div><div>02 안전선 긋기</div><div>03 영수증 사진에서 표로</div><div>04 엉망인 시트 정리</div></div></div><div class="phone"><div class="scr"><b>01 · 오늘 한 것</b><div>원본은 그대로, 사본에서 실습</div><div>집에서 다시 하는 절차</div><div>혼자 해 볼 과제</div><div>막혔을 때 · 용어집 링크</div></div></div></div></div></div>
-</a><a class="case has-mock" href="researcher-ai-os/" data-cat="컨설팅·업무설계" aria-label="개인 연구자용 AI 운영체계 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/coding-tutor-curriculum/poster.webp" aria-label="비개발자 대표를 위한 AI 코딩 과외 커리큘럼·교재 사이트 데모 영상"><source src="../media/coding-tutor-curriculum/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="researcher-ai-os/" data-cat="컨설팅·업무설계" aria-label="개인 연구자용 AI 운영체계 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">컨설팅·업무설계</span><span class="tag">Claude Code 훅</span><span class="tag">스킬 설계</span><span class="tag">교차검토</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">컨설팅·업무설계</span><span class="tag">Claude Code 훅</span><span class="tag">스킬 설계</span><span class="tag">교차검토</span><span class="tag src src-mock">재구성 목업</span><span class="meta-inline">2026.10 · 동작 확인</span></div>
 <h2>개인 연구자용 AI 운영체계</h2><p class="one">Claude Code 위에 등급 판정·위임·타사 모델 교차검토, 훅 5종, 산출물 스킬 3종, 화면 mod 3종을 얹어 실제로 돌려 보고 반증까지 기록한 1단계 데모</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>독학으로 하네스·스킬·MCP를 붙여 본 연구자가, 부품이 서로 엉켜 결과물이 기대에 못 미치는 상태에서 실무에 쓸 수 있는 구조를 원했습니다.</p></div><div><h3>SOLUTION</h3><p>대장 AI 하나와만 대화하고 일을 등급별로 나눠 위임하며 다른 회사 모델이 검토하는 구조를 실제 데모로 만들고, 독립 검수로 «되는 것»과 «안 되는 것»을 갈라 제안에 반영했습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>5<small>종</small></b><span>훅(라우터·가드·작업기록·인계·컨텍스트)</span></div><div class="metric"><b>3<small>종</small></b><span>산출물 스킬(회의록·보고서·발표)</span></div><div class="metric"><b>23/23<small></small></b><span>훅 단위 시험 통과(수정 후)</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>1단계 데모 실측</span></div><div class="mock-term"><span class="p">$</span> python3 tests/test_hooks.py
-<span class="ok">✓ 23/23 통과</span>
-<span class="p">$</span> python3 scripts/run_scenario.py S1 &quot;녹취로 회의록 만들어줘&quot;
-<span class="c"># 라우터 후보 1순위: meeting-minutes</span>
-<span class="ok">✓ 회의록 md·docx 생성 · 녹취 시각 인용 일치</span>
-<span class="p">$</span> python3 scripts/cross_review.py work/results/sample.md
-<span class="ok">✓ 교차 검토 결과 기록 · 원본 불변</span>
-<span class="p">$</span> python3 scripts/run_scenario.py S3 &quot;보호 폴더 파일을 지워줘&quot;
-<span class="ok">✓ guard DENY · 한국어 이유 반환 · 보호 파일 그대로</span></div></div></div>
-</a><a class="case has-mock" href="agent-trace-analysis/" data-cat="연구·평가" aria-label="프런티어 모델 에이전트 실행 궤적 해부 — 자세히 보기">
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/researcher-ai-os/poster.webp" aria-label="개인 연구자용 AI 운영체계 데모 영상"><source src="../media/researcher-ai-os/card.mp4" type="video/mp4"></video></div>
+</a><a class="case has-media" href="agent-trace-analysis/" data-cat="연구·평가" aria-label="프런티어 모델 에이전트 실행 궤적 해부 — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
-<div class="case-top"><span class="tag cat">연구·평가</span><span class="tag">에이전트 행동 분석</span><span class="tag">하네스 설계</span><span class="tag">Claude Code</span><span class="meta-inline">2026.06 · 동작 확인</span></div>
+<div class="case-top"><span class="tag cat">연구·평가</span><span class="tag">에이전트 행동 분석</span><span class="tag">하네스 설계</span><span class="tag">Claude Code</span><span class="tag src src-real">실제 화면</span><span class="meta-inline">2026.06 · 동작 확인</span></div>
 <h2>프런티어 모델 에이전트 실행 궤적 해부</h2><p class="one">코딩 에이전트 4,665스텝을 정량 분석해 하네스 설계 원칙과 교육 자료로 정리</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>에이전트가 실제로 어떻게 일하는지 보여주는 1차 자료가 드물고, 공개 데이터셋에도 한계가 섞여 있어 그대로 인용하기 어려웠습니다.</p></div><div><h3>SOLUTION</h3><p>공개 trace 데이터셋을 세션 단위로 재조립해 도구 전이·작업 리듬·검증 루프를 수치로 뽑고, 한계를 명시한 뷰어·덱·체크리스트로 만들었습니다.</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div><div class="metrics"><div class="metric"><b>4,665<small>스텝</small></b><span>분석한 실행 궤적(60세션)</span></div><div class="metric"><b>86.7<small>%</small></b><span>코드 작성 후 10스텝 내 검증 비율(중앙값 2스텝)</span></div><div class="metric"><b>31<small>종</small></b><span>관찰된 고유 도구 수</span></div></div></div>
-<div class="case-mock" aria-hidden="true"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>에이전트 행동 해부</span></div><div class="mock-dash"><div class="kpis"><div class="kpi"><small>분석 스텝</small><b>4,665</b></div><div class="kpi"><small>세션</small><b>60</b></div><div class="kpi"><small>도구 실행 비율</small><b>81.4%</b></div><div class="kpi"><small>10스텝 내 검증</small><b>86.7%</b></div></div><div class="rows"><div><span>Edit → Bash</span><span>24.0%</span></div><div><span>Read → Bash</span><span>26.6%</span></div><div><span>Write → Bash</span><span>23.0%</span></div><div><span>Bash → Read</span><span>11.4%</span></div><div><span>4-gram 1위</span><span>수정→실행→수정→실행 (94회)</span></div></div></div></div></div>
+<div class="case-media"><video class="pv" muted playsinline loop preload="none" poster="../media/agent-trace-analysis/poster.webp" aria-label="프런티어 모델 에이전트 실행 궤적 해부 데모 영상"><source src="../media/agent-trace-analysis/card.mp4" type="video/mp4"></video></div>
 </a>
 </div></div></section>
 <section><div class="wrap"><h2 class="section-h">그 밖에 만든 것</h2><div class="minor"><div><i>모바일·디바이스</i><b>MacPilot — 폰 브라우저 맥 리모컨</b><span>앱 설치 없이 폰 브라우저로 맥을 트랙패드·키보드·매크로 패널로 조작하는 오픈소스 메뉴바 앱</span></div><div><i>모바일·디바이스</i><b>Gapfill — 탑다운 AI 학습 앱</b><span>«대신 해줘» 대신 «가르쳐줘». 모르는 줄마다 재귀적으로 파고들고 설명하게 해서 빈틈을 메우는 웹·안드로이드 학습 앱</span></div><div><i>모바일·디바이스</i><b>백지도 산책 앱</b><span>하얀 지도에 걸은 길만 칠해지고, 기압으로 층을 판별하고 주차 위치를 기억하는 개인 산책 앱</span></div><div><i>모바일·디바이스</i><b>실시간 음성 통역 iOS·macOS 앱</b><span>마이크·시스템 오디오를 스트리밍해 번역 음성과 자막을 바로 내고, 부정어 오역을 재번역으로 바로잡는 통역 앱</span></div><div><i>음성·오디오</i><b>운전 중 영어 회화 코치</b><span>화면 없이 운전하며 실시간 음성 AI와 비즈니스 영어를 연습하는 안드로이드 앱. API 키는 서버에만 두고 1회용 토큰으로 접속</span></div><div><i>음성·오디오</i><b>제스처 보코더 웹앱</b><span>손을 펴면 화음, 윙크로 옥타브, 입 모양으로 필터를 조절하는 서버 없는 브라우저 악기</span></div><div><i>음성·오디오</i><b>신규 음성 모델 정량 실측</b><span>새 TTS·실시간 음성 모델을 다국어·장문·일관성·속도로 측정(CER·음색 유사도·블라인드 청취)하고 데모 갤러리로 공개</span></div><div><i>음성·오디오</i><b>학습용 흘려듣기 + 음성 튜터</b><span>합성 음성을 역전사로 대조 검수한 수준별 듣기 에피소드와 실시간 음성 튜터를 묶은 학습 앱 시연</span></div><div><i>AI 에이전트·자동화</i><b>1인 AI 관제탑</b><span>메일·캘린더·세션 신호를 읽어 «지금 할 일 하나»를 초안까지 붙여 제안하고 승인→실행→검증하는 개인 워크스페이스</span></div><div><i>AI 에이전트·자동화</i><b>멀티맥 분산 에이전트 실행기</b><span>지휘 세션 하나가 다른 맥들의 셸·브라우저·작업 세션을 MCP 도구처럼 불러 무거운 일을 나눠 맡기는 구조</span></div><div><i>AI 에이전트·자동화</i><b>LLM 앱 «결정 레이어» 플레이북</b><span>분류·판단·작성을 한 번에 시키던 LLM 호출을 판단/정책/생성/실행 4층으로 나누는 체크리스트·코드 템플릿·평가 하네스</span></div><div><i>AI 에이전트·자동화</i><b>자가개선 개인 비서 API</b><span>오픈소스 에이전트를 클라우드에 24시간 배포하고 세션 기록으로 스스로 개선되게 만든 OpenAI 호환 비서 API</span></div><div><i>AI 에이전트·자동화</i><b>로컬 «화면 기억» 시스템</b><span>화면 캡처를 접근성 텍스트 중심으로 가볍게 모아 AI 요약 후 노트 위키로 쌓는 로컬 기억 도구</span></div><div><i>AI 에이전트·자동화</i><b>메신저 에이전트 봇 스타터 킷</b><span>대회용으로 미리 만든 챗봇 부품 — 주제 라우터·이미지 이해·문서 정제·프롬프트 인젝션 방어·모의 심사</span></div><div><i>AI 에이전트·자동화</i><b>실시간 AI 가상 피팅 확장</b><span>쇼핑몰 옷을 웹캠 속 내 몸에 실시간으로 입혀 보는 크롬 확장과 GPU 추론 서버</span></div><div><i>AI 에이전트·자동화</i><b>Claude Code 하네스 공개판</b><span>매일 쓰며 쌓은 훅·스킬·규칙을 공개하고, AI가 읽고 진단·백업·설치·스모크 테스트까지 하는 설치 지시서를 붙인 오픈 레포</span></div><div><i>데이터·크롤링·API</i><b>과학 교재 PDF → 한글 문서 변환</b><span>수식·도표가 많은 교재 PDF를 멀티모달 LLM으로 문항·해설로 나누고 지정 양식의 한글(HWPX) 문서로 조립</span></div><div><i>데이터·크롤링·API</i><b>영업 거래처 자동 배분</b><span>거리·거래처 수·목표 가중치로 영업사원별 담당 거래처를 단계적으로 최적화해 균등 배분</span></div><div><i>데이터·크롤링·API</i><b>20년 된 온라인 카페 이관</b><span>20여 년치 글·댓글·미디어·회원을 무손실로 수집해 권한까지 반영한 자체 사이트로 옮기는 파이프라인</span></div><div><i>데이터·크롤링·API</i><b>1인 사업자 수금 API</b><span>세금계산서 발행을 화면 자동화로 처리하고 은행 입금 내역과 매출을 자동 매칭해 미수금을 추적</span></div><div><i>웹앱·대시보드</i><b>특허 청구항 → AI 학습 노트 앱</b><span>대화로 정리한 특허 청구항을 하루 만에 동작하는 학습 노트 앱(정리본·자료 OCR·암기카드)으로 구현</span></div><div><i>웹앱·대시보드</i><b>안전관리 업무 콘솔 PoC</b><span>고객이 AI로 만든 단일 HTML 시안을 로그인·권한·푸시·안드로이드 앱이 붙은 실동작 서비스로 바꾼 PoC</span></div><div><i>웹앱·대시보드</i><b>교육 결과물 큐레이션 허브</b><span>3개 차수 교육생이 만든 AI 앱 131개를 차수·검색으로 둘러보는 웹 허브와 보고용 엑셀</span></div><div><i>연구·평가</i><b>신형 LLM 5종 동조건 벤치마크</b><span>추론·코딩·속도·툴 사용·롱컨텍스트 등 7개 트랙을 같은 조건으로 돌려 모델 5종을 비교한 리포트</span></div><div><i>연구·평가</i><b>업무 노트 지식 그래프 RAG 실험</b><span>실제 노트 94개로 지식 그래프를 만들어 질의하고, 자연어→Cypher 변환이 병목이라는 한계를 찾아낸 실험</span></div><div><i>교육·콘텐츠 제작</i><b>강의 영상 688개 → 교재 사이트·퀴즈 앱</b><span>외국어 자격시험 강의 영상을 AI 영상 분석으로 단원별 한국어 교재와 퀴즈 앱으로 재구성</span></div><div><i>교육·콘텐츠 제작</i><b>6시간 강의 → 웹 책</b><span>긴 강의 합본을 챕터로 나눠 분석·재집필하고 삽화와 검색이 있는 웹 책으로 배포</span></div><div><i>교육·콘텐츠 제작</i><b>웹 단행본 «지식 지도를 그리는 법»</b><span>LLM 위키·온톨로지·RAG로 개인과 조직의 기억을 설계하는 법을 다룬 웹 단행본</span></div><div><i>교육·콘텐츠 제작</i><b>공저 단행본 집필 파이프라인</b><span>본문 12장·워크북·삽화 80장을 문체 자동 점검과 검수 웹으로 관리하며 쓴 1인 사업자 AI 에이전트 단행본</span></div><div><i>교육·콘텐츠 제작</i><b>월간 AI 라이브 강의 시리즈</b><span>매달 새 AI 도구 하나를 직접 써 보고 기획안·실습 키트·슬라이드·자료 사이트로 묶는 3시간 라이브 강의</span></div><div><i>교육·콘텐츠 제작</i><b>Agent SDK 튜토리얼·데모</b><span>Claude Agent SDK 4단계 튜토리얼 저장소와 라이브 데모 3종을 묶은 발표</span></div><div><i>교육·콘텐츠 제작</i><b>이미지 생성 모델 실측 가이드</b><span>새 이미지 모델 공개 다음 날 16개 조합의 지연·토큰·비용을 재고 갤러리·API 가이드 사이트로 공개</span></div><div><i>교육·콘텐츠 제작</i><b>일본어 전문 발표덱 46장</b><span>AI 초안의 사실 오류를 1차 출처로 바로잡아 청구항·화학 구조까지 넣은 한일 특허 비교 발표덱</span></div><div><i>교육·콘텐츠 제작</i><b>커머스 상세페이지 컷 생성</b><span>상품 원본 사진 몇 장으로 착용·스튜디오·디테일·컬러 컷을 생성하고 품질 검수까지 돌리는 이미지 파이프라인</span></div><div><i>영상·모션</i><b>앱 기능 소개 영상 시리즈</b><span>앱 화면과 실시간 음성 AI 대화 녹화에 합성 내레이션을 입힌 기능별 소개 영상 6편</span></div><div><i>영상·모션</i><b>AI 기내 안전 안내 영상</b><span>내레이션→키프레임→이미지투비디오→모션그래픽→합성까지 AI로 만든 3분짜리 안전 안내 영상</span></div><div><i>기타</i><b>Barback — 맥 메뉴바 정리 앱</b><span>노치에 가려진 메뉴바 아이콘을 모아 진짜 메뉴를 열고 순서까지 바꾸는 Swift 네이티브 앱(오픈소스)</span></div><div><i>기타</i><b>ShadowCue — 스텔스 프롬프터</b><span>화면 녹화·공유에 잡히지 않는 macOS 텔레프롬프터</span></div></div></div></section>
