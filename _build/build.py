@@ -172,7 +172,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 @media (min-width:980px){
  .cases{gap:28px}
  .case.has-media{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
- .case-media{order:-1;border-bottom:0;border-right:1px solid var(--line);display:flex;align-items:center}
+ .case-media{order:-1;border-bottom:0;border-right:1px solid var(--line);background:#fff}
+ .case-media video{position:sticky;top:16px}
  .case.has-media .case-body{padding:28px 30px 22px}
  .case.has-media .ps{grid-template-columns:1fr;gap:12px}
  .case.has-media h2{font-size:1.4rem}
