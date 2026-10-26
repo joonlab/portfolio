@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "_build" / "projects.json").read_text(encoding="utf-8"))
 OUT = ROOT / "projects"
+MEDIA = ROOT / "media"
 
 E = lambda s: html.escape(str(s), quote=True)
 
@@ -142,7 +143,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .phone .scr div{border:1px solid var(--line);border-radius:8px;padding:7px 9px;margin-bottom:6px;line-height:1.45}
 .mock-dark .mock{margin-top:0}
 .case-mock{display:none}
+/* demo video */
+.case-media{position:relative;background:#f3f3f3;border-bottom:1px solid var(--line);order:-1}
+.case-media video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#f3f3f3}
+.src-tag{position:absolute;left:12px;top:12px;font-size:.72rem;font-weight:700;line-height:1;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--sub);pointer-events:none}
+.demo{margin:30px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f3f3f3;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.demo video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;cursor:pointer;background:#f3f3f3}
+.demo figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;font-size:.8rem;color:var(--muted);background:#fff;border-top:1px solid var(--line)}
+.demo .pp{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:rgba(20,20,20,.62);color:#fff;font-size:.8rem;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .2s}
+.demo.paused .pp{opacity:1}
+@media (prefers-reduced-motion:reduce){.case,.demo .pp{transition:none}}
 @media (min-width:760px){
+ .case.has-media{grid-template-columns:1fr 1.08fr}
+ .case-media{order:0;border-bottom:0;border-left:1px solid var(--line);display:flex;align-items:center;padding:0}
+ .case-media video{height:auto}
  .ps{grid-template-columns:1fr 1fr;gap:24px}
  .d-grid{grid-template-columns:180px 1fr}
  .feats{grid-template-columns:1fr 1fr}
@@ -186,6 +200,45 @@ def head(title, desc, depth):
 
 
 FOOT = """<footer><div class="wrap"><span>박준 | PARK JOON · <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></span><span>고객사 정보는 익명화해 컨셉과 결과 위주로 소개합니다.</span></div></footer>
+"""
+
+
+def media_info(slug):
+    """portfolio/media/<slug>/ 에 card·poster 가 있으면 영상 정보를, 없으면 None(아직 영상 없는 케이스는 정적 목업 유지)."""
+    d = MEDIA / slug
+    if not ((d / "card.mp4").exists() and (d / "poster.webp").exists()):
+        return None
+    meta = {}
+    if (d / "meta.json").exists():
+        meta = json.loads((d / "meta.json").read_text(encoding="utf-8"))
+    return {"source": meta.get("source", "mock"), "demo": (d / "demo.mp4").exists()}
+
+
+def video_html(prefix, slug, kind, label, cls=""):
+    """muted·playsinline·loop·preload=none + poster. 재생은 PLAYER_JS 가 화면에 보일 때만 한다."""
+    base = f"{prefix}media/{slug}/"
+    return (f'<video class="pv{(" " + cls) if cls else ""}" muted playsinline loop preload="none" '
+            f'poster="{E(base)}poster.webp" aria-label="{E(label)}"><source src="{E(base)}{kind}.mp4" type="video/mp4"></video>')
+
+
+SRC_LABEL = {"real": "실제 화면", "mock": "재구성 목업"}
+
+# 화면에 보일 때만 재생(IntersectionObserver), 벗어나면 일시정지. prefers-reduced-motion 이면 poster 만 보인다.
+# 상세 demo 는 클릭으로 일시정지/재생(사용자가 누르면 reduced-motion 이어도 재생).
+PLAYER_JS = """<script>
+(function(){var vs=[].slice.call(document.querySelectorAll('video.pv'));if(!vs.length)return;
+var mq=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null;
+function reduced(){return !!(mq&&mq.matches)}
+function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+function auto(v){if(!reduced()&&!v.dataset.user)play(v)}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)auto(e.target);else e.target.pause()})},{threshold:0.35});vs.forEach(function(v){io.observe(v)})}
+else vs.forEach(auto);
+vs.forEach(function(v){var f=v.closest('.demo');if(!f)return;
+ v.addEventListener('click',function(){if(v.paused){v.dataset.user='';play(v)}else{v.pause();v.dataset.user='1'}});
+ v.addEventListener('pause',function(){f.classList.add('paused')});v.addEventListener('play',function(){f.classList.remove('paused')});f.classList.add('paused')});
+if(mq&&mq.addEventListener)mq.addEventListener('change',function(){if(reduced())vs.forEach(function(v){v.pause()})});
+})();
+</script>
 """
 
 
@@ -238,15 +291,18 @@ def build_index(projects, minor):
     for p in projects:
         tags = f'<span class="tag cat">{E(p["category"])}</span>' + "".join(f'<span class="tag">{E(t)}</span>' for t in p.get("tags", [])[:3])
         mets = "".join(metric_html(m) for m in p.get("metrics", [])[:3])
-        mk = mock_html(p.get("mock"), p["title"], max_phones=2)
-        cards.append(f"""<a class="case{' has-mock' if mk else ''}" href="{E(p['slug'])}/" data-cat="{E(p['category'])}" aria-label="{E(p['title'])} — 자세히 보기">
+        mi = media_info(p["slug"])
+        mk = "" if mi else mock_html(p.get("mock"), p["title"], max_phones=2)
+        side = (f'<div class="case-media">{video_html("../", p["slug"], "card", p["title"] + " 데모 영상")}<span class="src-tag">{SRC_LABEL.get(mi["source"], "")}</span></div>' if mi
+                else (f'<div class="case-mock" aria-hidden="true">{mk}</div>' if mk else ''))
+        cards.append(f"""<a class="case{' has-media' if mi else (' has-mock' if mk else '')}" href="{E(p['slug'])}/" data-cat="{E(p['category'])}" aria-label="{E(p['title'])} — 자세히 보기">
 <div class="case-wrap"><div class="case-body">
 <div class="case-top">{tags}<span class="meta-inline">{E(p['period'])} · {E(p['maturity'])}</span></div>
 <h2>{E(p['title'])}</h2><p class="one">{E(p['subtitle'])}</p>
 <div class="ps"><div><h3>PROBLEM</h3><p>{E(p['problem_short'])}</p></div><div><h3>SOLUTION</h3><p>{E(p['solution_short'])}</p></div></div>
 <span class="more">자세히 보기 →</span>
 </div>{f'<div class="metrics">{mets}</div>' if mets else ''}</div>
-{f'<div class="case-mock" aria-hidden="true">{mk}</div>' if mk else ''}
+{side}
 </a>""")
     delivered = sum(1 for p in projects if p["maturity"] in ("납품 완료", "배포·운영 중"))
     minor_html = "".join(
@@ -274,7 +330,7 @@ cs.forEach(function(c){{c.addEventListener('click',function(){{apply(c.dataset.f
 function fromHash(){{var h=decodeURIComponent(location.hash.slice(1));apply(h&&[].some.call(cs,function(c){{return c.dataset.f===h}})?h:'*')}}
 window.addEventListener('hashchange',fromHash);if(location.hash)fromHash();}})();
 </script>
-</body></html>
+{PLAYER_JS}</body></html>
 """
     (OUT / "index.html").write_text(out, encoding="utf-8")
 
@@ -308,6 +364,17 @@ def build_detail(p, prev, nxt):
         pager += "<span></span>"
     if nxt:
         pager += f'<a class="next" href="../{E(nxt["slug"])}/"><small>다음 →</small><b>{E(nxt["title"])}</b></a>'
+    mi = media_info(p["slug"])
+    if mi and mi["demo"]:
+        cap = ("실제 화면 녹화 · 개인정보와 내부 주소는 가렸습니다" if mi["source"] == "real"
+               else "재구성 목업 · 실제 화면이 아니라 흐름을 보여 주는 애니메이션입니다")
+        hero_media = (f'<figure class="demo">{video_html("../../", p["slug"], "demo", p["title"] + " 데모 영상", "demo-v")}'
+                      f'<span class="pp" aria-hidden="true">▶</span><figcaption><span>{E(cap)}</span><span>클릭하면 멈춤·재생</span></figcaption></figure>')
+        note = ("상단 영상은 실제 화면을 녹화한 것입니다." if mi["source"] == "real"
+                else "상단 영상은 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다.")
+    else:
+        hero_media = mock_html(p.get('mock'), p['title'])
+        note = "화면 이미지는 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다."
     out = head(f'{p["title"]} — 박준 프로젝트', p["subtitle"], 2) + f"""<main><div class="wrap">
 <div class="crumb"><a href="../">프로젝트</a> / {E(p['category'])}</div>
 <section class="d-hero">
@@ -315,14 +382,14 @@ def build_detail(p, prev, nxt):
 <h1>{E(p['title'])}</h1>
 <p class="lead">{E(p['subtitle'])}</p>
 <dl class="facts">{facts_html}</dl>
-{mock_html(p.get('mock'), p['title'])}
+{hero_media}
 </section>
 {f'<div class="d-metrics"><div class="metrics">{mets}</div></div>' if mets else ''}
 {body}
-<p class="note">화면 이미지는 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다.{' 고객 정보는 익명화했습니다.' if p['origin'] in ('의뢰 프로젝트', '기업 프로젝트') else ''}</p>
+<p class="note">{note}{' 고객 정보는 익명화했습니다.' if p['origin'] in ('의뢰 프로젝트', '기업 프로젝트') else ''}</p>
 <nav class="pager" aria-label="프로젝트 이동">{pager}</nav>
 </div></main>
-{FOOT}</body></html>
+{FOOT}{PLAYER_JS}</body></html>
 """
     d = OUT / p["slug"]
     d.mkdir(parents=True, exist_ok=True)
@@ -337,8 +404,12 @@ def inject_featured(projects, n=6):
     for p in projects[:n]:
         m = (p.get("metrics") or [None])[0]
         mh = f'<div class="fc-metric"><b>{E(m["value"])}{E(m.get("unit", ""))}</b> {E(m["label"])}</div>' if m else ""
-        cards.append(f'<a class="feat-card" href="projects/{E(p["slug"])}/"><div class="fc-cat">{E(p["category"])}</div><div class="fc-title">{E(p["title"])}</div><div class="fc-desc">{E(p["subtitle"])}</div>{mh}</a>')
-    block = a + '\n<div class="feat-grid">' + "".join(cards) + "</div>\n" + b
+        mi = media_info(p["slug"])
+        vid = f'<div class="fc-media">{video_html("", p["slug"], "card", p["title"] + " 데모 영상")}</div>' if mi else ""
+        cards.append(f'<a class="feat-card{" has-media" if mi else ""}" href="projects/{E(p["slug"])}/">{vid}<div class="fc-cat">{E(p["category"])}</div><div class="fc-title">{E(p["title"])}</div><div class="fc-desc">{E(p["subtitle"])}</div>{mh}</a>')
+    style = ("<style>.feat-card.has-media{padding-top:0;overflow:hidden}.fc-media{margin:0 -20px 14px;border-bottom:1px solid var(--card-border);background:#f3f3f3}"
+             ".fc-media video{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}</style>")
+    block = a + "\n" + style + '\n<div class="feat-grid">' + "".join(cards) + "</div>\n" + PLAYER_JS + b
     s = s[: s.index(a)] + block + s[s.index(b) + len(b):]
     idx.write_text(s, encoding="utf-8")
 
