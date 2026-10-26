@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>공동구매 커머스 업무 자동화 에이전트 — 박준 프로젝트</title>
+<meta name="description" content="격리된 작업 VM 안의 코딩 에이전트가 인플루언서 발굴·인기 상품 조사·섭외 문구 준비를 자율로 수행하는 PoC">
+<meta property="og:title" content="공동구매 커머스 업무 자동화 에이전트 — 박준 프로젝트">
+<meta property="og:description" content="격리된 작업 VM 안의 코딩 에이전트가 인플루언서 발굴·인기 상품 조사·섭외 문구 준비를 자율로 수행하는 PoC">
+<link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/portfolio.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../../">박준 <span>·</span> PARK JOON</a>
+<nav class="toplinks"><a href="../../">개요</a><a href="../">프로젝트</a><a href="mailto:wns9133@gmail.com">연락</a></nav>
+</div></header>
+<main><div class="wrap">
+<div class="crumb"><a href="../">프로젝트</a> / AI 에이전트·자동화</div>
+<section class="d-hero">
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">브라우저 에이전트</span><span class="tag">격리 실행 환경</span><span class="tag">피드백 루프</span><span class="tag">엔진 비교 평가</span></div>
+<h1>공동구매 커머스 업무 자동화 에이전트</h1>
+<p class="lead">격리된 작업 VM 안의 코딩 에이전트가 인플루언서 발굴·인기 상품 조사·섭외 문구 준비를 자율로 수행하는 PoC</p>
+<dl class="facts"><div><dt>기간</dt><dd>2026.09</dd></div><div><dt>형태</dt><dd>의뢰 프로젝트</dd></div><div><dt>상태</dt><dd>동작 확인</dd></div><div><dt>역할</dt><dd>요구사항 정리·설계·PoC 구현·검수 (1인, 무인 릴레이로 실행)</dd></div></dl>
+<div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>커머스 에이전트 웹 창구 (샘플)</span></div><div class="mock-chat"><div class="bubble u">육아용품 공구를 하는 A계정과 비슷한 인플루언서 15명 찾아줘</div><div class="bubble a">해석: 시드 1개 · 팔로워 2만 이상 · 15명 · 공구 게시물 기준. 이대로 실행할까요?</div><div class="bubble u">실행</div><div class="bubble a">진행 중 · 프로필 34페이지 조회 · 쓰기 동작 0</div><div class="bubble a">완료 · 15명 표를 만들었습니다. 기준 충족 12명, 경계 3명</div><div class="bubble u">👎 계정 7은 살림용품 위주라 제외해줘</div><div class="bubble a">다음 실행 규칙에 반영했습니다. 같은 계정은 다시 제안하지 않습니다</div></div></div>
+</section>
+<div class="d-metrics"><div class="metrics"><div class="metric"><b>5분 22초<small></small></b><span>유사 인플루언서 15명 탐색 (화면 판정 ○12·△3)</span></div><div class="metric"><b>31/31<small></small></b><span>인기 공구 게시물 원본 대조 정확도</span></div><div class="metric"><b>31/36<small></small></b><span>조사 범위 안 재현율</span></div><div class="metric"><b>19<small>PASS</small></b><span>amd64 에뮬레이션 재현 기반 스모크, FAIL 0</span></div></div></div>
+<section class="d-sec"><div class="d-grid"><h2>문제</h2><div class="body"><p>의뢰자는 SNS 인플루언서와 함께 공동구매를 운영하는 1인 사업자였고, 데이터베이스 없이 비슷한 인플루언서 찾기, 반응 좋았던 공구 상품 정리, 섭외 메시지 발송을 모두 수작업으로 해 왔습니다. 무엇을 자동화할 수 있는지 판단할 근거가 없는 상태였습니다.</p><p>SNS 쪽 제약도 컸습니다. 공식 API로는 먼저 연락하지 않은 상대에게 DM을 보낼 수 없고 비공식 자동화는 계정 정지 위험이 있어서, 무엇을 자동으로 하고 무엇을 사람이 해야 하는지 경계를 실측으로 정해야 했습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>접근</h2><div class="body"><ul><li>통화 내용을 전사해 기능 세 가지(유사 인플루언서, 인기 상품, 섭외)와 판정 항목 Q1~Q8을 정하고, 데이터베이스를 쌓기 전에 PoC로 바로 확인하는 방향을 제안했습니다.</li><li>가상 데스크톱·브라우저·코딩 에이전트를 한 컨테이너 이미지에 넣고, 원격 화면으로 진행 상황을 볼 수 있는 격리 작업 VM을 만들었습니다.</li><li>SNS 접근은 읽기 전용 가드를 거치게 하고 시간당 요청 수와 요청 간격을 코드로 강제했으며, DM은 문구 준비와 보내기 직전 단계까지만 자동으로 두었습니다.</li><li>작업 큐·엔진 어댑터·진행 스트림·피드백 저장을 갖춘 러너 API와 웹 창구를 만들고, 👍👎 피드백이 다음 실행 프롬프트에 그대로 들어가게 했습니다.</li><li>결과를 만든 세션과 분리된 판정 에이전트가 채점하게 해 자기 평가를 배제했고, 두 코딩 에이전트 엔진을 같은 과제로 비교했습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>구조</h2><div class="body"><div class="flow"><div class="step"><b>자연어 지시</b><span>웹 창구에 한 줄로 요청하면 해석 결과를 먼저 보여 줍니다.</span></div><div class="arrow"></div><div class="step"><b>격리 VM 실행</b><span>컨테이너 안 에이전트가 브라우저로 SNS를 읽기 전용으로 조사합니다.</span></div><div class="arrow"></div><div class="step"><b>진행 스트림</b><span>조회 페이지 수와 진행 로그가 실시간으로 웹에 표시됩니다.</span></div><div class="arrow"></div><div class="step"><b>결과표</b><span>인플루언서 목록, 카테고리별 인기 상품표, 사람별 섭외 문구가 표로 나옵니다.</span></div><div class="arrow"></div><div class="step"><b>피드백 반영</b><span>👍👎와 한 줄 코멘트가 다음 실행의 규칙으로 들어갑니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>주요 기능</h2><div class="body"><div class="feats"><div class="feat"><b>격리 작업 VM</b><span>가상 데스크톱, 브라우저 원격 제어, 코딩 에이전트를 한 이미지에 담아 arm64와 amd64 모두에서 같은 구성으로 띄웁니다.</span></div><div class="feat"><b>읽기 전용 SNS 가드</b><span>쓰기 요청을 막고 요청 속도를 코드로 제한해, 가드를 거친 로그인 조회 363페이지 동안 수집 실행의 쓰기 차단 기록 0건을 기록했습니다.</span></div><div class="feat"><b>피드백 루프</b><span>웹에서 남긴 피드백이 다음 실행 프롬프트에 원문으로 들어가고, 제외한 계정은 다시 나오지 않습니다.</span></div><div class="feat"><b>반자동 섭외</b><span>사람별 메일·DM 문구를 만들고, DM은 보내기 직전까지만 준비합니다.</span></div><div class="feat"><b>엔진 비교</b><span>두 코딩 에이전트 엔진을 같은 과제로 돌려 품질·시간·토큰·실패율을 표로 비교했습니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>결과</h2><div class="body"><ul><li>유사 인플루언서 15명을 5분 22초에 찾았고, 분리된 판정 에이전트의 화면 채점은 ○12·△3·×0이었습니다. 경계에 있는 3명을 엄격히 내리면 합격선에 1명 모자란다는 점도 보고서에 그대로 적었습니다.</li><li>인기 공구 게시물은 원본 대조 31/31 정확, 조사 범위(18계정) 안 재현율 31/36이었습니다.</li><li>엔진 비교에서 한 엔진이 같은 과제를 6분 35초 대 16분 45초, 입력 토큰 1:9.2로 처리해 주력 엔진을 정했습니다.</li><li>Q1~Q7은 합격선을 넘었고, 공수 추정(Q8)은 실측이 아닌 추정이라 △로 판정했습니다. 결과는 79초 데모 영상과 보고서로 정리했습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>포인트</h2><div class="body"><p>SNS 자동화에서는 기술적으로 가능한 것보다 계정이 다치지 않는 범위가 먼저였습니다. 읽기 전용, 속도 제한, DM 반자동을 프롬프트 지시가 아니라 코드 가드로 묶어 두었기 때문에 에이전트에게 자율을 줄 수 있었습니다.</p><p>또 PoC 판정을 만든 세션 밖에서 받는 구조가 중요했습니다. 판정자를 분리하자 합격선에 아슬아슬하게 걸친 항목이 드러났고, 그 여유의 크기까지 보고에 담을 수 있었습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>기술</h2><div class="body"><div class="stack"><span>Claude Code</span><span>Codex CLI</span><span>Docker</span><span>noVNC</span><span>Chromium CDP</span><span>Playwright</span><span>Python</span><span>SQLite</span></div></div></div></section>
+<p class="note">화면 이미지는 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다. 고객 정보는 익명화했습니다.</p>
+<nav class="pager" aria-label="프로젝트 이동"><a href="../voice-writing-harness/"><small>← 이전</small><b>블라인드 심판을 통과하는 &#x27;내 문체&#x27; 글쓰기 하네스</b></a><a class="next" href="../accident-survey-ai/"><small>다음 →</small><b>교통사고 현장조사 AI — 과실 분류·약도 자동 생성</b></a></nav>
+</div></main>
+<footer><div class="wrap"><span>박준 | PARK JOON · <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></span><span>고객사 정보는 익명화해 컨셉과 결과 위주로 소개합니다.</span></div></footer>
+</body></html>

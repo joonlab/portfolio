@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR로 여는 다국어 표준 레시피 시스템 — 박준 프로젝트</title>
+<meta name="description" content="한상 QR → 구성 음식 → 표준 레시피를 2개 언어로 보는 사업장용 웹앱 시연판">
+<meta property="og:title" content="QR로 여는 다국어 표준 레시피 시스템 — 박준 프로젝트">
+<meta property="og:description" content="한상 QR → 구성 음식 → 표준 레시피를 2개 언어로 보는 사업장용 웹앱 시연판">
+<link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/portfolio.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../../">박준 <span>·</span> PARK JOON</a>
+<nav class="toplinks"><a href="../../">개요</a><a href="../">프로젝트</a><a href="mailto:wns9133@gmail.com">연락</a></nav>
+</div></header>
+<main><div class="wrap">
+<div class="crumb"><a href="../">프로젝트</a> / 웹앱·대시보드</div>
+<section class="d-hero">
+<div class="case-top"><span class="tag cat">웹앱·대시보드</span><span class="tag">모바일 웹</span><span class="tag">QR</span><span class="tag">다국어</span><span class="tag">서버리스</span><span class="tag">E2E 테스트</span></div>
+<h1>QR로 여는 다국어 표준 레시피 시스템</h1>
+<p class="lead">한상 QR → 구성 음식 → 표준 레시피를 2개 언어로 보는 사업장용 웹앱 시연판</p>
+<dl class="facts"><div><dt>기간</dt><dd>2026.10</dd></div><div><dt>형태</dt><dd>의뢰 프로젝트</dd></div><div><dt>상태</dt><dd>동작 확인</dd></div><div><dt>역할</dt><dd>요구 분석·설계·풀스택 개발·QA·제안 패키지 제작</dd></div></dl>
+<div class="mock" style="background:#f3f3f3;border-color:var(--line)"><div class="phone-row"><div class="phone"><div class="scr"><b>한상 A-1</b><div>한상 사진</div><div>A등급 · 6품</div><div>밥 · 찌개 · 볶음 · 나물 · 전 · 과일</div><div>구성별 레시피 보기 →</div></div></div><div class="phone"><div class="scr"><b>상품 3 — 레시피</b><div>재료 | 조리 순서 | 담음새</div><div>기준 4인분 · 인분 계산</div><div>1. 재료 손질</div><div>2. 양념 버무리기</div><div>레시피 PDF 보기</div></div></div><div class="phone"><div class="scr"><b>상차림 기준</b><div>배치도 ① ~ ⑥</div><div>③ 뒷줄 오른쪽 끝</div><div>⑤ 가운데 줄 왼쪽</div><div>KO / VI 전환</div></div></div></div></div>
+</section>
+<div class="d-metrics"><div class="metrics"><div class="metric"><b>29/29<small>건</small></b><span>서버 테스트 통과</span></div><div class="metric"><b>91/91<small>건</small></b><span>배포 주소 E2E 통과(콘솔 오류 0)</span></div><div class="metric"><b>14<small>개</small></b><span>자동 생성한 레시피 PDF(성조 깨짐 0)</span></div><div class="metric"><b>9<small>건</small></b><span>독립 검수 지적 반영(8.3/10)</span></div></div></div>
+<section class="d-sec"><div class="d-grid"><h2>문제</h2><div class="body"><p>코스형 메뉴를 내는 조리팀은 한상마다 구성 음식·중량·조리 순서·담음새 기준을 지켜야 하지만, 직원이 이를 현장에서 바로 확인할 수 있는 도구가 없었습니다. 메뉴북의 QR을 찍으면 해당 한상과 레시피가 열리고, 2개 언어와 내부 직원 전용 접근을 지원하는 모바일 사이트가 필요했습니다.</p><p>특히 레시피를 고쳐도 이미 인쇄된 QR이 계속 동작해야 하고, 같은 음식을 여러 한상에서 공통으로 써야 했습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>접근</h2><div class="body"><ul><li>한상별 고정 주소를 QR에 넣고 내용은 서버에서 바꾸는 구조로, 수정 후에도 인쇄 QR이 유지되게 했습니다.</li><li>레시피와 한상 구성을 분리하고, 상차림 위치는 레시피가 아니라 한상 구성에 두어 같은 음식도 한상마다 다른 자리를 가질 수 있게 했습니다.</li><li>관리자가 저장하면 브라우저가 인쇄용 A4 화면을 PDF로 만들어 바로 올려, 수정 직후에도 직원이 최신 PDF를 받게 했습니다.</li><li>직원 화면은 모바일 우선, PC 1024px 이상은 두 칸 레이아웃으로 설계하고 360·390·1280 폭에서 가로 넘침을 검사했습니다.</li><li>맥락 없는 독립 검수자의 지적 9건을 반영한 뒤 E2E를 다시 돌렸습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>구조</h2><div class="body"><div class="flow"><div class="step"><b>QR 스캔</b><span>메뉴북의 한상 QR이 고정 주소로 연결됩니다.</span></div><div class="arrow"></div><div class="step"><b>접근 확인</b><span>직원 공용 접근 코드로 내부 열람만 허용합니다.</span></div><div class="arrow"></div><div class="step"><b>한상 확인</b><span>한상 사진·등급·구성 목록과 상차림 배치도를 봅니다.</span></div><div class="arrow"></div><div class="step"><b>레시피 열람</b><span>재료 · 조리 순서 · 담음새 탭과 레시피 PDF를 확인합니다.</span></div><div class="arrow"></div><div class="step"><b>관리자 수정</b><span>레시피·사진·한상 구성을 고치면 PDF가 자동 갱신되고 같은 QR에 반영됩니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>주요 기능</h2><div class="body"><div class="feats"><div class="feat"><b>한상별 고정 QR</b><span>QR PNG·SVG를 내려받고 코드를 고정해, 구성이 바뀌어도 인쇄물을 다시 만들 필요가 없습니다.</span></div><div class="feat"><b>레시피 3탭</b><span>재료·조리 순서·담음새를 탭으로 나누고 번호 원 단계 카드로 보여줍니다. 인분 비례 계산을 선택 옵션 미리보기로 구현했습니다.</span></div><div class="feat"><b>한·베 전환 + 이름 병기</b><span>헤더에서 언어를 전환하고 기기에 기억하며, 음식 이름은 항상 두 언어로 병기합니다. 번역이 비면 «번역 없음»을 표시합니다.</span></div><div class="feat"><b>상차림 배치도</b><span>한상 사진과 같은 배치의 번호 배치도와 «뒷줄 오른쪽 끝» 같은 위치 문장을 한상 구성의 위치값에서 만듭니다.</span></div><div class="feat"><b>PDF 자동 갱신</b><span>관리자 저장 직후 인쇄용 화면을 PDF로 떠서 업로드하고, 갱신 전이나 실패 시에도 직원은 인쇄용 화면에서 PDF를 받습니다.</span></div><div class="feat"><b>관리자 화면</b><span>레시피·한상·공통 연결 관리, JSON·CSV 백업 내보내기, 접근 코드 변경을 지원합니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>결과</h2><div class="body"><ul><li>요청 접수 당일 시연판을 배포하고 서버 테스트 29건과 배포 주소 E2E 91건을 모두 통과했습니다.</li><li>레시피 PDF 14개를 A4 1~2쪽으로 자동 생성하고, 성조 부호가 있는 외국어 표기가 깨지지 않는지 이미지로 떠서 확인했습니다.</li><li>90초 소개 영상과 14쪽 사용 가이드를 함께 만들었습니다.</li><li>현재는 제안 단계이며, 레시피 수치와 번역은 예시 데이터입니다. 현지 통신 환경과 실기기 검증은 남아 있습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>포인트</h2><div class="body"><p>이 건의 핵심 설계 판단은 «무엇이 바뀌고 무엇이 고정되는가»를 데이터 모델에 그대로 옮기는 것이었습니다. QR은 고정하고 내용은 바꾸며, 상차림 위치는 음식이 아니라 한상에 속한다는 구분을 스키마에 넣자 배치도·위치 문장·PDF가 모두 같은 결과 하나를 쓰게 되었습니다.</p><p>독립 검수에서 «수정하면 PDF가 사라진다»는 결함이 나온 것처럼, 만든 사람이 놓치는 흐름은 맥락 없는 검수자가 잡아냈습니다. 생성과 검증을 분리한 절차를 시연판 품질 점검의 기본 단계로 두었습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>기술</h2><div class="body"><div class="stack"><span>Cloudflare Workers</span><span>Hono</span><span>Cloudflare D1</span><span>Cloudflare R2</span><span>Vanilla JS SPA</span><span>html2canvas</span><span>jsPDF</span><span>Playwright</span><span>vitest</span><span>GPT Image</span></div></div></div></section>
+<p class="note">화면 이미지는 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다. 고객 정보는 익명화했습니다.</p>
+<nav class="pager" aria-label="프로젝트 이동"><a href="../senior-travel-app/"><small>← 이전</small><b>시니어 국내여행 예약 앱</b></a><a class="next" href="../motion-reel-engine/"><small>다음 →</small><b>코드로 만드는 모션그래픽 영상 엔진</b></a></nav>
+</div></main>
+<footer><div class="wrap"><span>박준 | PARK JOON · <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></span><span>고객사 정보는 익명화해 컨셉과 결과 위주로 소개합니다.</span></div></footer>
+</body></html>

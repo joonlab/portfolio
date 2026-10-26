@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>박준 | PARK JOON — Portfolio</title>
+<link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="description" content="AI 교육·컨설팅·에이전트 엔지니어 박준의 포트폴리오 — 강의 이력과 직접 만든 프로젝트 케이스">
 <style>
+  @font-face { font-family: 'Pretendard'; src: url('/assets/fonts/PretendardVariable.subset.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
@@ -21,7 +24,8 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    word-break: keep-all;
+    font-family: 'Pretendard', 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: var(--text);
     background: var(--bg);
     line-height: 1.7;
@@ -297,6 +301,23 @@
     .cards { grid-template-columns: 1fr 1fr; }
   }
 
+  /* ===== FEATURED ===== */
+  .header-cta { display: inline-block; margin-top: 16px; padding: 9px 18px; border-radius: 999px; background: #fff; color: var(--accent); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+  .header-cta:hover { background: #fbe9ef; }
+  .feat-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .feat-card { display: block; border: 1px solid var(--card-border); border-radius: 12px; padding: 18px 20px; background: #fff; text-decoration: none; color: var(--text); transition: border-color .2s, box-shadow .2s; }
+  .feat-card:hover { border-color: var(--accent); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+  .feat-card .fc-cat { font-size: 0.75rem; font-weight: 700; color: var(--accent); }
+  .feat-card .fc-title { font-weight: 700; font-size: 1.02rem; margin: 4px 0 4px; line-height: 1.4; }
+  .feat-card .fc-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+  .feat-card .fc-metric { margin-top: 10px; font-size: 0.82rem; color: var(--text); }
+  .feat-card .fc-metric b { color: var(--accent); font-size: 1.05rem; }
+  .feat-more { display: inline-block; margin-top: 20px; font-weight: 700; color: var(--accent); text-decoration: none; }
+  .feat-more:hover { text-decoration: underline; }
+  @media (min-width: 700px) { .feat-grid { grid-template-columns: 1fr 1fr 1fr; } }
+  .see-cases { margin: -12px 0 24px; font-size: 0.92rem; color: var(--gray); }
+  .see-cases a { color: var(--accent); font-weight: 700; }
+
   /* ===== PRINT ===== */
   @media print {
     .subnav { display: none; }
@@ -313,6 +334,7 @@
     <div class="header-text">
       <h1>박준 | PARK JOON</h1>
       <div class="contact">010-5060-9188 &nbsp;|&nbsp; <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></div>
+      <a class="header-cta" href="projects/">프로젝트 케이스 보기 →</a>
     </div>
     <img class="header-photo" src="profile.jpg" alt="박준 프로필 사진">
   </div>
@@ -321,6 +343,8 @@
 <!-- ===== SUB-NAV ===== -->
 <nav class="subnav">
   <div class="subnav-inner">
+    <a href="#featured">대표 프로젝트</a>
+    <a href="projects/">전체 케이스 ↗</a>
     <a href="#education">학력</a>
     <a href="#lectures">강의 / 컨설팅</a>
     <a href="#consulting-projects">컨설팅 프로젝트</a>
@@ -341,6 +365,17 @@
     <span class="tag">기업 AX/DX 컨설팅</span>
     <span class="tag">LLM/RAG 시스템 개발</span>
     <span class="tag">AI 업무 자동화</span>
+  </div>
+</div>
+
+<!-- ===== FEATURED (build.py 가 채움) ===== -->
+<div class="section section-alt" id="featured">
+  <div class="section-content">
+    <h2 class="section-title">대표 프로젝트</h2>
+<!-- FEATURED:START -->
+<div class="feat-grid"><a class="feat-card" href="projects/unattended-ai-relay/"><div class="fc-cat">AI 에이전트·자동화</div><div class="fc-title">사람 없이 이어 달리는 AI 작업 릴레이</div><div class="fc-desc">컨텍스트가 차면 스스로 다음 세션에 넘기고, 막히면 메일로 결정을 묻는 무인 작업 사슬</div><div class="fc-metric"><b>7회</b> 첫 실전까지 세션 인계 성공(스모크 1 + 실전 6, 실패 0)</div></a><a class="feat-card" href="projects/dualcue-live-interpreter/"><div class="fc-cat">음성·오디오</div><div class="fc-title">«DualCue» 화상 미팅 양방향 실시간 통역 자막</div><div class="fc-desc">내 말은 상대 화면에만 영어 자막으로, 상대 말은 내 화면에만 한국어 자막으로 — 상대는 아무것도 설치하지 않는 macOS 앱</div><div class="fc-metric"><b>48→8%</b> 반쪽 문장 확정 비율, 첫 버전→v2 (한국어→영어)</div></a><a class="feat-card" href="projects/exam-video-factory/"><div class="fc-cat">영상·모션</div><div class="fc-title">한국어 시험 강의·해설 영상 무인 생산 라인</div><div class="fc-desc">문항 생성부터 음성·애니메이션 슬라이드·영상 합성까지, 사람 검수 단계를 측정 가능한 자동 게이트로 바꾼 다국어 영상 파이프라인</div><div class="fc-metric"><b>43편</b> 중·고급 시험 해설 영상 납품(합계 341.5분)</div></a><a class="feat-card" href="projects/exam-content-pipeline/"><div class="fc-cat">AI 에이전트·자동화</div><div class="fc-title">한국어 시험 문항·음성 자동 생성·검수 파이프라인</div><div class="fc-desc">쓰기·듣기·읽기 모의고사 문항 생성 하네스와 사람 검수용 TTS 스튜디오, 작업지시–실행–승인 작업판까지 갖춘 시험 콘텐츠 생산 체계</div><div class="fc-metric"><b>45세트</b> 쓰기 모의고사 시스템 업로드 형식 전달</div></a><a class="feat-card" href="projects/retail-daily-report-agent/"><div class="fc-cat">AI 에이전트·자동화</div><div class="fc-title">유통 일일 실적 보고 자동화 에이전트</div><div class="fc-desc">매일 아침 쿼리 결과를 넣으면 보고서와 집계표가 나오고, 발송·발주는 사람 결재 뒤에만 확정되는 유통업 운영 에이전트 진단과 PoC</div><div class="fc-metric"><b>8항목</b> 보고서 생성 전 자동 입고검사 검출</div></a><a class="feat-card" href="projects/lodging-ops-agent/"><div class="fc-cat">AI 에이전트·자동화</div><div class="fc-title">숙박 운영 로컬 AI 에이전트 «지휘탑»</div><div class="fc-desc">한국어 한 줄 지시로 예약·정산·OTA 재고·게스트 응대·청소·가격 업무를 계획→확인→실행→검증→기록하는 로컬 에이전트</div><div class="fc-metric"><b>958건</b> 자동 시험 통과(실패 0)</div></a></div>
+<!-- FEATURED:END -->
+    <a class="feat-more" href="projects/">전체 케이스 보기 →</a>
   </div>
 </div>
 
@@ -464,6 +499,7 @@
 <div class="section section-alt" id="dev-projects">
   <div class="section-content">
     <h2 class="section-title">개발 프로젝트</h2>
+    <p class="see-cases">문제·구조·결과까지 정리한 상세 케이스는 <a href="projects/">프로젝트 페이지</a>에 있습니다.</p>
 
     <div class="group-header">AI Agent &amp; LLM 시스템</div>
     <div class="cards">
@@ -477,7 +513,7 @@
       </div>
       <div class="card">
         <div class="card-title">TOPIK I 강의영상 완전 자동화</div>
-        <div class="card-desc">문제생성→해설→TTS→슬라이드 애니메이션→영상 합성→다국어(5개 언어) 무인 파이프라인. 15종 에이전트 팀 + Gemini 4차원 영상 QA</div>
+        <div class="card-desc">문제생성→해설→TTS→슬라이드 애니메이션→영상 합성→다국어(5개 언어) 무인 파이프라인. 역할별 서브에이전트 27개 + 자동 품질 게이트</div>
       </div>
       <div class="card">
         <div class="card-title">insane-search — WAF 우회 검색 스킬</div>
@@ -622,7 +658,7 @@
       </div>
       <div class="card">
         <div class="card-title">Fable-5 Traces 분석 (공개 연구)</div>
-        <div class="card-desc">단명한 프런티어 모델의 실제 코딩 궤적 4,665행을 분석 → 검증 내장 루프의 86.7%가 10스텝 내 완료됨을 발견. 인터랙티브 뷰어·덱·인포그래픽으로 공개 (Vercel + GitHub)</div>
+        <div class="card-desc">단명한 프런티어 모델의 실제 코딩 궤적 4,665스텝(60세션)을 분석 → 코드 작성 후 10스텝 안에 검증이 나타나는 비율 86.7%를 확인. 인터랙티브 뷰어·덱·인포그래픽으로 공개 (Vercel + GitHub)</div>
       </div>
       <div class="card">
         <div class="card-title">GraphRAG 신뢰형 QA</div>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한국어 시험 강의·해설 영상 무인 생산 라인 — 박준 프로젝트</title>
+<meta name="description" content="문항 생성부터 음성·애니메이션 슬라이드·영상 합성까지, 사람 검수 단계를 측정 가능한 자동 게이트로 바꾼 다국어 영상 파이프라인">
+<meta property="og:title" content="한국어 시험 강의·해설 영상 무인 생산 라인 — 박준 프로젝트">
+<meta property="og:description" content="문항 생성부터 음성·애니메이션 슬라이드·영상 합성까지, 사람 검수 단계를 측정 가능한 자동 게이트로 바꾼 다국어 영상 파이프라인">
+<link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/portfolio.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../../">박준 <span>·</span> PARK JOON</a>
+<nav class="toplinks"><a href="../../">개요</a><a href="../">프로젝트</a><a href="mailto:wns9133@gmail.com">연락</a></nav>
+</div></header>
+<main><div class="wrap">
+<div class="crumb"><a href="../">프로젝트</a> / 영상·모션</div>
+<section class="d-hero">
+<div class="case-top"><span class="tag cat">영상·모션</span><span class="tag">멀티에이전트 하네스</span><span class="tag">TTS·STT 정렬</span><span class="tag">결정적 렌더링</span><span class="tag">다국어 현지화</span><span class="tag">품질 게이트</span></div>
+<h1>한국어 시험 강의·해설 영상 무인 생산 라인</h1>
+<p class="lead">문항 생성부터 음성·애니메이션 슬라이드·영상 합성까지, 사람 검수 단계를 측정 가능한 자동 게이트로 바꾼 다국어 영상 파이프라인</p>
+<dl class="facts"><div><dt>기간</dt><dd>2026.06–2026.10</dd></div><div><dt>형태</dt><dd>기업 프로젝트</dd></div><div><dt>상태</dt><dd>납품 완료</dd></div><div><dt>역할</dt><dd>설계·구현 전담(파이프라인 아키텍처, 에이전트 하네스, 렌더·검증 도구)</dd></div></dl>
+<div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>강의 영상 파이프라인 실행</span></div><div class="mock-term"><span class="p">$</span> /build-video --set mock01 --lang bn --track screen-only
+<span class="c"># 음성·타이밍은 한국어판에서 빌리고 화면 글자만 교체합니다</span>
+<span class="ok">✓ S2 장면표 57건 · 스키마 검증 PASS</span>
+<span class="ok">✓ S3 타임코드 재사용 · 슬라이드 경계 57/57 정렬</span>
+<span class="ok">✓ S4 시각 QA · 잘림 0 · 겹침 0</span>
+<span class="ok">✓ S5 렌더 57편 · 1920×1080 · 24fps</span>
+<span class="ok">✓ 자막 2종 · 문장 수 일치 · 괄호 균형 · 문자 혼입 0</span>
+<span class="c"># 격리 큐: 0건</span></div></div>
+</section>
+<div class="d-metrics"><div class="metrics"><div class="metric"><b>43<small>편</small></b><span>중·고급 시험 해설 영상 납품(합계 341.5분)</span></div><div class="metric"><b>57×2<small>편</small></b><span>미얀마어·벵골어 화면번역 영상 본생산</span></div><div class="metric"><b>0<small>건</small></b><span>납품 게이트 FAIL(PASS 37 · REVIEW 6)</span></div><div class="metric"><b>27<small>개</small></b><span>역할별 서브에이전트 정의</span></div></div></div>
+<section class="d-sec"><div class="d-grid"><h2>문제</h2><div class="body"><p>한국어 교육 기업의 시험 대비 강의 영상은 문제 생성 → 해설·대본 → 음성 → 슬라이드 → 영상 순으로 만들어졌는데, 문제 검토·대본 검토·슬라이드 수정·음성 확정·번역 검토 같은 사람 검수 단계가 단계마다 병목이 되었습니다. 기존 해설 영상은 사람이 PPT 애니메이션으로 효과와 타이밍을 손으로 맞춰 만든 것이라 수정이나 새 편 제작에 같은 공수가 다시 들었습니다.</p><p>대상 언어가 영어·우즈베크어에서 미얀마어·벵골어·중국어로 늘어나면서, 음성 합성이 지원되지 않거나 억양이 현지에 맞지 않는 언어까지 같은 품질로 처리해야 했습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>접근</h2><div class="body"><ul><li>파이프라인을 문제 생성 / 해설 / TTS / 슬라이드 / 영상 5단계로 나누고, 단계 사이에는 데이터 계약(JSON 스키마)이 검증을 통과해야 다음 단계로 넘어가는 게이트를 두었습니다. 단계 안에서는 문항·슬라이드 단위로 병렬 실행했습니다.</li><li>창의적 생성(지문·대본·해설 문장)은 LLM이, 정답 유일성·급수 어휘·형식·싱크 같은 결정적 제약은 룰엔진과 스크립트가 맡도록 역할을 분리했습니다.</li><li>문항 단위로 나레이션을 한 번에 합성한 뒤 단어 단위 STT 타임스탬프를 원본 대본에 정렬해 슬라이드 경계를 역산하고, 이 타임코드를 애니메이션과 자막의 단일 기준으로 삼았습니다.</li><li>게이트마다 최대 수정 횟수를 두고, 한도를 넘은 항목은 사람을 부르지 않고 격리 큐로 보내 전체 파이프라인이 멈추지 않게 했습니다.</li><li>기존 해설 영상은 표본 두 편의 원본 PPT 효과 263건과 타이밍을 실측 분석해 코드 기반 덱으로 재현하고, 원본 대비 효과 시각을 재는 타이밍 게이트로 판정했습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>구조</h2><div class="body"><div class="flow"><div class="step"><b>문항 생성</b><span>유형 코드·난이도를 받아 지문과 선택지를 만들고, 오답에는 함정 유형 태그를 붙입니다.</span></div><div class="arrow"></div><div class="step"><b>해설·장면표</b><span>함정 태그를 재사용해 정답 근거·오답 설명·풀이 전략 대본과 슬라이드별 장면표를 씁니다.</span></div><div class="arrow"></div><div class="step"><b>음성·정렬</b><span>문항 단위로 음성을 합성하고 STT 단어 타임스탬프를 대본에 정렬해 타임코드를 만듭니다.</span></div><div class="arrow"></div><div class="step"><b>슬라이드</b><span>타임코드에 맞춰 선택지·밑줄·정답 공개 애니메이션을 배치하고, 캡처 기반 시각 QA로 잘림·겹침을 잡습니다.</span></div><div class="arrow"></div><div class="step"><b>렌더·합성</b><span>헤드리스 브라우저로 프레임을 결정적으로 캡처해 영상으로 인코딩하고 음성·자막을 병합합니다.</span></div><div class="arrow"></div><div class="step"><b>납품 게이트</b><span>규격·길이·음량·효과 타이밍을 자동 측정하고, 편마다 시작·중간·끝 화면을 원본과 나란히 눈으로 검수합니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>주요 기능</h2><div class="body"><div class="feats"><div class="feat"><b>자동 합격 게이트와 격리 큐</b><span>검수 단계마다 측정 가능한 합격 기준과 재시도 상한을 두어 사람 없이 수렴하게 하고, 실패 항목만 따로 모읍니다.</span></div><div class="feat"><b>전사 기준 타이밍</b><span>대본이 아닌 실제 음성의 전사 타임스탬프로 화면 전환 시점을 정해 음성과 화면이 어긋나지 않게 했습니다.</span></div><div class="feat"><b>화면번역 트랙</b><span>음성 합성을 쓸 수 없는 언어는 음성·타이밍을 한국어판에서 빌리고 화면 글자만 해당 언어로 바꿔 생산합니다.</span></div><div class="feat"><b>언어별 규칙 파일</b><span>번역·화면 표기·용어 규칙을 언어별 YAML·JSON으로 분리해 새 언어를 정해진 절차로 추가할 수 있게 했습니다.</span></div><div class="feat"><b>원본 연출 환원 분석</b><span>원본 PPT의 슬라이드 자동진행 합계가 영상 길이와 밀리초 단위로 일치함을 확인해 영상이 PPT 자동진행 그대로임을 밝히고, 효과 종류와 타이밍을 파싱해 코드 덱으로 옮겼습니다.</span></div><div class="feat"><b>이관 패키지</b><span>경로 설정 한 곳만 고치면 다른 기계에서 같은 화면을 다시 그리는 작업 도구 묶음과 첫 확인 스크립트를 함께 넘겼습니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>결과</h2><div class="body"><ul><li>중·고급 시험 해설 영상 43편(듣기 20 · 읽기 23, 합계 341.5분)을 단일 인코딩 규격으로 납품했고, 최종 게이트는 PASS 37 · REVIEW 6 · FAIL 0이었습니다. REVIEW 6건은 모두 사전에 판정된 자리였습니다.</li><li>납품본 길이는 원본 대비 −0.375~0.000초 범위였고, 43편 × 3시점 129개 화면을 원본과 나란히 검수했습니다.</li><li>초급 강의 영상은 미얀마어·벵골어 각 57편을 화면번역 방식으로 본생산했고, 벵골어 57편은 전건이 길이·자막·문장 수·문자 혼입 자동 검증을 통과했습니다. 이 밖에 중국어 듣기 영상 27편과 영어·우즈베크어 자막을 제작했습니다.</li><li>이관 패키지를 다른 경로에 풀어 재현 리허설을 진행해 경로 치환 377파일 519곳, 화면 대조 3/3 동일, 타이밍 게이트 PASS를 확인했습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>포인트</h2><div class="body"><p>기계 잣대를 통과한 것과 옳은 것은 다르다는 점을 여러 번 확인했습니다. 그래서 판정은 «눈 · 수치 · 상태 · 원문» 네 가지를 모두 보는 것으로 정했고, 음성 내용은 대본이 아니라 전사로 판정하도록 규칙을 고정했습니다. 재인코딩하면 같은 화면이라도 영상 파일 해시가 달라지므로, 이관 검증은 영상이 아니라 프레임 이미지로 재는 방식으로 설계했습니다.</p><p>장기 운영에서 생긴 사고와 교훈은 별도의 회귀 가드 문서로 모으고, 세션마다 실리는 규약 파일에는 금지·트리거만 두는 구조로 정리했습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>기술</h2><div class="body"><div class="stack"><span>Claude Code 서브에이전트·Workflow</span><span>Python</span><span>ElevenLabs TTS·STT</span><span>Gemini TTS</span><span>Playwright</span><span>React(JSX) 슬라이드 덱</span><span>ffmpeg</span><span>Google Drive API</span></div></div></div></section>
+<p class="note">화면 이미지는 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다. 고객 정보는 익명화했습니다.</p>
+<nav class="pager" aria-label="프로젝트 이동"><a href="../dualcue-live-interpreter/"><small>← 이전</small><b>«DualCue» 화상 미팅 양방향 실시간 통역 자막</b></a><a class="next" href="../exam-content-pipeline/"><small>다음 →</small><b>한국어 시험 문항·음성 자동 생성·검수 파이프라인</b></a></nav>
+</div></main>
+<footer><div class="wrap"><span>박준 | PARK JOON · <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></span><span>고객사 정보는 익명화해 컨셉과 결과 위주로 소개합니다.</span></div></footer>
+</body></html>

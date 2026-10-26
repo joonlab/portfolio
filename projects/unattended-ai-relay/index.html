@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사람 없이 이어 달리는 AI 작업 릴레이 — 박준 프로젝트</title>
+<meta name="description" content="컨텍스트가 차면 스스로 다음 세션에 넘기고, 막히면 메일로 결정을 묻는 무인 작업 사슬">
+<meta property="og:title" content="사람 없이 이어 달리는 AI 작업 릴레이 — 박준 프로젝트">
+<meta property="og:description" content="컨텍스트가 차면 스스로 다음 세션에 넘기고, 막히면 메일로 결정을 묻는 무인 작업 사슬">
+<link rel="preload" href="/assets/fonts/PretendardVariable.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/portfolio.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+<a class="brand" href="../../">박준 <span>·</span> PARK JOON</a>
+<nav class="toplinks"><a href="../../">개요</a><a href="../">프로젝트</a><a href="mailto:wns9133@gmail.com">연락</a></nav>
+</div></header>
+<main><div class="wrap">
+<div class="crumb"><a href="../">프로젝트</a> / AI 에이전트·자동화</div>
+<section class="d-hero">
+<div class="case-top"><span class="tag cat">AI 에이전트·자동화</span><span class="tag">멀티 세션 오케스트레이션</span><span class="tag">컨텍스트 관리</span><span class="tag">무인 자동화</span><span class="tag">Human-in-the-loop</span></div>
+<h1>사람 없이 이어 달리는 AI 작업 릴레이</h1>
+<p class="lead">컨텍스트가 차면 스스로 다음 세션에 넘기고, 막히면 메일로 결정을 묻는 무인 작업 사슬</p>
+<dl class="facts"><div><dt>기간</dt><dd>2026.09–2026.10</dd></div><div><dt>형태</dt><dd>사이드 프로젝트</dd></div><div><dt>상태</dt><dd>배포·운영 중</dd></div><div><dt>역할</dt><dd>설계·구현·운영 (1인)</dd></div></dl>
+<div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>relay — 무인 작업 사슬</span></div><div class="mock-term"><span class="p">$</span> relay_init.sh ~/projects/sample
+<span class="c"># QUEUE.tsv: 한 줄 = 세션 하나가 맡을 단위</span>
+<span class="p">$</span> relay_watch.sh ~/projects/sample
+<span class="ok">✓ 감시자 기동 · 사슬 1개 감시 중</span>
+<span class="c"># 워커 컨텍스트 72% — 단위 경계에서 인계</span>
+<span class="ok">✓ 단위 3 done (verify rc=0) · 다음 세션에 프롬프트 경로 전달</span>
+<span class="c"># 단위 5: 사람 결정 필요 → hold, 결정 요청 메일 발송</span>
+<span class="ok">✓ 단위 6 진행 중 (막힌 단위만 건너뜀)</span>
+<span class="p">$</span> relay_decide.py answer 단위5 A안
+<span class="ok">✓ hold → todo · 사슬 재개</span></div></div>
+</section>
+<div class="d-metrics"><div class="metrics"><div class="metric"><b>7<small>회</small></b><span>첫 실전까지 세션 인계 성공(스모크 1 + 실전 6, 실패 0)</span></div><div class="metric"><b>6<small>건</small></b><span>첫 실전 2시간 동안 무인 완주한 작업 단위</span></div><div class="metric"><b>11<small>세션</small></b><span>외부 PoC 1건을 약 5시간에 완주한 사슬 길이</span></div><div class="metric"><b>13<small>건</small></b><span>규약에 기록하고 반영한 실측 사고</span></div></div></div>
+<section class="d-sec"><div class="d-grid"><h2>문제</h2><div class="body"><p>AI 코딩 에이전트에게 영상 수십 편 제작이나 문서 여러 장 작성처럼 같은 꼴의 단위가 반복되는 일을 맡기면 한 세션의 컨텍스트 안에 다 들어가지 않습니다. 사람이 컨텍스트가 찬 세션을 닫고 새 세션에 상황을 설명해 다시 시작시켜야 했고, 서버 맥에서 돌리는 작업은 화면 앞에 있어야만 진행 상황을 알 수 있었습니다.</p><p>이전 버전의 사슬은 사람의 결정이 필요한 지점에서 설계대로 멈췄지만, 그 사실이 전달될 경로가 서버 화면밖에 없어 약 2주간 멈춘 채로 있었습니다. 무인 세션에는 첫 프롬프트 이후 사람 입력이 없어서, 사람 입력 시점에 도는 컨텍스트 경고 훅이 다시 울리지 않았다는 점도 검토 중에 확인했습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>접근</h2><div class="body"><ul><li>작업을 세션 하나가 맡을 단위로 쪼개 큐 파일에 적고, 상태(todo·doing·done·hold)를 사슬의 유일한 정본으로 삼았습니다.</li><li>워커 세션이 한 단위를 끝내면 큐에 완료를 기록하고 새 탭에 다음 세션을 띄워 프롬프트 경로 한 줄만 넘긴 뒤 스스로 종료하게 했습니다. 긴 프롬프트를 붙여넣으면 일부만 전달되는 사고를 실측한 뒤 정한 방식입니다.</li><li>도구 호출마다 도는 PostToolUse 훅으로 컨텍스트 70·80·90% 구간에 처음 들어설 때 한 번씩 경계에서 끊으라는 지시를 주입했습니다.</li><li>사람이 정해야 하는 일은 결정 파일과 hold 상태로 분리해, 막힌 단위만 건너뛰고 나머지는 계속 달리게 했습니다. 알림 메일은 받는 사람이 코드에 고정된 본인 주소로만 나갑니다.</li><li>노트북 쪽 관제 세션이 서버의 사슬 상황을 확인하고, 사람이 말로 준 결정을 스크립트로 전달해 hold를 풀도록 했습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>구조</h2><div class="body"><div class="flow"><div class="step"><b>큐 작성</b><span>작업을 세션 단위로 쪼개 큐에 적고, 완료 판정 명령(verify)을 함께 둡니다.</span></div><div class="arrow"></div><div class="step"><b>감시자 기동</b><span>감시자 세션이 큐를 읽고 첫 워커 세션을 엽니다.</span></div><div class="arrow"></div><div class="step"><b>워커 실행·인계</b><span>워커가 단위를 끝내거나 컨텍스트 경계에 닿으면 기록을 남기고 다음 세션에 넘깁니다.</span></div><div class="arrow"></div><div class="step"><b>막힘 처리</b><span>감시자가 권한 질문과 끊긴 사슬을 감지해 되돌릴 수 있는 범위에서만 직접 처리합니다.</span></div><div class="arrow"></div><div class="step"><b>결정 요청</b><span>사람 판단이 필요한 단위는 hold로 두고 메일을 보낸 뒤 나머지를 계속 진행합니다.</span></div><div class="arrow"></div><div class="step"><b>결정 반영</b><span>관제 세션이 답을 결정 파일에 기록하면 해당 단위가 다시 todo로 풀립니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>주요 기능</h2><div class="body"><div class="feats"><div class="feat"><b>워커 자가 인계</b><span>작업 세션이 다음 세션을 직접 띄우고 프롬프트가 실제로 돌기 시작했는지 확인한 뒤 종료합니다.</span></div><div class="feat"><b>컨텍스트 계기 훅</b><span>릴레이 세션에서만 켜지는 훅이 70·80·90% 구간마다 한 번씩 끊을 시점을 알려 줍니다.</span></div><div class="feat"><b>판단하는 감시자</b><span>감시자는 권한 질문을 프로젝트 안의 되돌릴 수 있는 작업일 때만 승인하고, 그 밖은 알림만 보냅니다.</span></div><div class="feat"><b>결정 수신함과 메일 알림</b><span>결정 요청·막힘·완주를 사건마다 본인 메일로 알리고, 답을 받으면 막힌 단위만 풀어 줍니다.</span></div><div class="feat"><b>무거운 작업 잠금·디스크 가드</b><span>렌더처럼 무거운 명령은 잠금으로 한 번에 하나만 돌리고, 디스크 여유가 기준 밑이면 사슬을 세우고 결정을 요청합니다.</span></div><div class="feat"><b>verify 기반 완료 판정</b><span>큐의 완료 표시는 지정한 검증 명령이 성공(rc=0)할 때만 기록되어, 말로만 끝났다고 하는 경우를 막습니다.</span></div></div></div></div></section><section class="d-sec"><div class="d-grid"><h2>결과</h2><div class="body"><ul><li>첫 실전에서 열린 작업 6건을 2시간 동안 사람 없이 완주했고, 스모크 1회를 포함한 세션 인계 7회가 모두 성공했습니다.</li><li>같은 사슬 구조로 외부 의뢰 PoC 1건을 사슬 세션 11개, 약 5시간에 완주했습니다.</li><li>서버 맥에서 두 개의 사슬을 감시자 세션 하나가 동시에 보며 운영했고, 결정은 노트북 쪽에서 전달했습니다.</li><li>운영 중 드러난 사고 13건(붙여넣기 유실, 완주 오보, 컨텍스트 신호 누락 등)을 원인과 함께 규약 문서에 남기고 코드에 반영했습니다.</li></ul></div></div></section><section class="d-sec"><div class="d-grid"><h2>포인트</h2><div class="body"><p>무인 사슬이 서는 가장 흔한 이유는 기술 고장이 아니라 사람이 정해야 하는 일이었습니다. 그래서 핵심 설계는 결정을 대신하는 것이 아니라, 막힌 하나 때문에 나머지가 서지 않게 hold로 분리하고 그 사실이 사람에게 반드시 도달하게 하는 것이었습니다.</p><p>또 하나는 측정 계층의 위치였습니다. 사람 입력 시점에만 도는 경고는 무인 세션에서 다시 울리지 않았고, 신호를 도구 호출 시점으로 옮긴 뒤에야 컨텍스트 기준 인계가 작동했습니다.</p></div></div></section><section class="d-sec"><div class="d-grid"><h2>기술</h2><div class="body"><div class="stack"><span>Claude Code</span><span>Claude Code Hooks (PostToolUse)</span><span>Python</span><span>Bash</span><span>cmux</span><span>Gmail API</span><span>launchd</span></div></div></div></section>
+<p class="note">화면 이미지는 실제 화면이 아니라 구조를 보여 주는 재구성 목업입니다.</p>
+<nav class="pager" aria-label="프로젝트 이동"><span></span><a class="next" href="../dualcue-live-interpreter/"><small>다음 →</small><b>«DualCue» 화상 미팅 양방향 실시간 통역 자막</b></a></nav>
+</div></main>
+<footer><div class="wrap"><span>박준 | PARK JOON · <a href="mailto:wns9133@gmail.com">wns9133@gmail.com</a></span><span>고객사 정보는 익명화해 컨셉과 결과 위주로 소개합니다.</span></div></footer>
+</body></html>
